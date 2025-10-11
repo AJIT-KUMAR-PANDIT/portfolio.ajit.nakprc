@@ -5,6 +5,7 @@ import clsx from "clsx";
 import styles from "./SocialMediaSection.module.scss";
 import * as FaIcons from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import axios from "axios";
 
 const SocialMediaSection = () => {
   const [socialLinks, setSocialLinks] = useState([]);
@@ -26,9 +27,8 @@ const SocialMediaSection = () => {
   useEffect(() => {
     const fetchSocialLinks = async () => {
       try {
-        const response = await fetch("/api/social");
-        const data = await response.json();
-        setSocialLinks(data);
+        const response = await axios.get("/api/social");
+        setSocialLinks(response.data);
       } catch (error) {
         console.error("Error fetching social links:", error);
       }

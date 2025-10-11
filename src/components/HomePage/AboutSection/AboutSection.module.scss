@@ -1,0 +1,73 @@
+@reference "tailwindcss";
+
+.about-section {
+  @apply py-16 px-4 dark:bg-gray-900 relative overflow-hidden;
+
+  .title-main {
+    @apply text-3xl font-bold mb-8 text-center text-blue-400 dark:text-blue-300;
+  }
+
+  .title-sub {
+    @apply text-[11vmin];
+
+    .highlight {
+      @apply font-bold text-gray-600 dark:text-gray-400;
+    }
+  }
+
+  .content-wrapper {
+    @apply relative z-10 max-w-6xl mx-auto;
+
+    .header-section {
+      @apply text-center mb-12;
+
+      h2 {
+        @apply text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+      }
+
+      p {
+        @apply text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto;
+      }
+    }
+
+    .sections-container {
+      @apply space-y-12;
+
+      .section-card {
+        @apply dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700;
+
+        h3 {
+          @apply text-2xl font-bold mb-4 text-blue-400 dark:text-blue-300;
+        }
+
+        p {
+          @apply text-gray-700 dark:text-gray-300 leading-relaxed;
+        }
+      }
+
+      .traits-grid {
+        @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+
+        .trait-card {
+          @apply dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-center;
+
+          h3 {
+            @apply text-xl font-bold mb-2 text-blue-400 dark:text-blue-300;
+          }
+        }
+      }
+
+      .core-values-list {
+        @apply space-y-4;
+
+        h4 {
+          @apply text-xl font-semibold text-gray-900 dark:text-white;
+        }
+
+        p {
+          @apply text-gray-700 dark:text-gray-300;
+        }
+      }
+    }
+  }
+}

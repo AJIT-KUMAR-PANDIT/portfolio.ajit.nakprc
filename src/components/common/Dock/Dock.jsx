@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react"; // axios import was already removed
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import * as LucideIcons from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
-
-import navConfig from "@/config/nav.json";
+import axios from "axios";
 
 import styles from "./Dock.module.scss";
 
@@ -16,10 +15,23 @@ export default function Dock() {
   const [openSubMenu, setOpenSubMenu] = useState(null);
   const [dockSubMenu, setDockSubMenu] = useState(null);
   const [maxVisible, setMaxVisible] = useState(7);
-  const [navData, setNavData] = useState(navConfig); // The useEffect for fetching navigation data was already removed.
+  const [navData, setNavData] = useState({ items: [] }); // Initialize with an empty items array
   const [mounted, setMounted] = useState(false);
 
   const { theme, setTheme, resolvedTheme } = useTheme();
+
+  // Fetch navigation data
+  useEffect(() => {
+    const fetchNavData = async () => {
+      try {
+        const response = await axios.get("/api/nav");
+        setNavData(response.data);
+      } catch (error) {
+        console.error("Error fetching navigation data:", error);
+      }
+    };
+    fetchNavData();
+  }, []);
 
   // Responsive max visible
   useEffect(() => {
@@ -65,7 +77,10 @@ export default function Dock() {
         >
           <div
             className={`${styles.circle} ${circleClass}`}
-            style={{ backgroundColor: item.color || "#e5e7eb", borderRadius: "50%" }}
+            style={{
+              backgroundColor: item.color || "#e5e7eb",
+              borderRadius: "50%",
+            }}
           >
             <Icon className={circleClass} />
           </div>
