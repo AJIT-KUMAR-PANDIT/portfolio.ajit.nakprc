@@ -16,7 +16,7 @@
 }
 
 .hero-title {
-  @apply text-center text-4xl text-white font-bold;
+  @apply text-center text-5xl text-white font-bold;
 
   border-right: 9px solid rgb(0, 98, 255);
   padding-right: 1rem;
@@ -45,4 +45,16 @@
   @include mq(lg) {
     @apply flex justify-end items-center flex-col;
   }
+}
+
+.hero-text1 {
+  @apply text-center text-xl text-white font-bold mt-2;
+}
+
+.hero-tagline {
+  @apply text-center text-2xl text-white font-bold mt-2;
+}
+
+.hero-btn {
+  @apply flex justify-center items-center gap-3 m-4;
 }
