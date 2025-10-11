@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./HeroSection.module.scss";
 import Typewriter from "@/components/ui/TypeWriter";
 import clsx from "clsx";
+import SocialMediaSection from "@/components/common/SocialMediaSection/SocialMediaSection";
 
 const HeroSection = () => {
   return (
@@ -15,7 +16,7 @@ const HeroSection = () => {
           />
         </h1>
         <h5 className={clsx(styles["hero-tagline"])}>
-          eNHANCING fUTURE wITH tECHNOLOGY
+          ENHANCING FUTURE WITH TECHNOLOGY
         </h5>
         <h6 className={clsx(styles["hero-text1"])}>
           Building Digital Experiences!
@@ -24,6 +25,7 @@ const HeroSection = () => {
           <button className={clsx("btn-primary")}>Contact Me</button>
           <button className={clsx("btn-secondary")}>View My Work</button>
         </div>
+        <SocialMediaSection />
       </div>
       <div className={clsx(styles["hero-right"])}>
         <video autoPlay loop muted className={clsx(styles["background-video"])}>
