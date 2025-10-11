@@ -7,7 +7,7 @@ const HeroSection = () => {
     <>
       <section className={styles["hero-section"]}>
         <section className={styles["hero-content"]}>
-          <h1 className={styles["hero-title"] + "myFont"}>Ajit Kumar Pandit</h1>
+          <h1 className={styles["hero-title"] + " myFont"}>Ajit Kumar Pandit</h1>
           <p className={styles["hero-subtitle"]}>Frontend Developer</p>
         </section>
         <section className={styles["hero-right"]}>
