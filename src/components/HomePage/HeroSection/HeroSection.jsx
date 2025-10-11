@@ -1,15 +1,24 @@
 import React from "react";
 import styles from "./HeroSection.module.scss";
+import Image from "next/image";
 
 const HeroSection = () => {
   return (
     <>
-      <div className={styles["hero-section"]}>
-        <div className={styles["hero-content"]}>
-          <h1 className={styles["hero-title"]}></h1>
+      <section className={styles["hero-section"]}>
+        <section className={styles["hero-content"]}>
+          <h1 className={styles["hero-title"] + "myFont"}>Ajit Kumar Pandit</h1>
           <p className={styles["hero-subtitle"]}>Frontend Developer</p>
-        </div>
-      </div>
+        </section>
+        <section className={styles["hero-right"]}>
+          <Image
+            src="/ajitkumarpandit/AJITKUMARPANDIT.jpg"
+            alt="hero"
+            width={400}
+            height={400}
+          />
+        </section>
+      </section>
     </>
   );
 };
