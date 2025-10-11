@@ -1,0 +1,45 @@
+{
+  "aboutMe": {
+    "title": "Get to know me",
+    "subtitle": "About Me",
+    "story": "I'm a passionate Full Stack Developer who loves creating amazing websites and applications. I work with modern technologies like MongoDB, Express.js, React, and Node.js to build complete web solutions from start to finish. My main focus is understanding what my clients actually need and then making it happen. Whether it's creating beautiful front-end designs or building strong backend systems, I always try to deliver work that looks good and works perfectly. I believe in keeping things simple and clear when working with clients. Good communication is very important to me because I want to make sure we're on the same page throughout the project. Every website or application I build is made with care and attention to detail. In my free time, I keep learning new technologies and techniques to stay updated with the latest trends in web development. This helps me provide better solutions to my clients. I'm based in India and have been helping businesses and individuals create their digital presence. If you have an idea for a website or web application, I'd love to help you bring it to life. Let's work together and create something great!",
+    "traits": [
+      "Problem Solver",
+      "Creative Thinker",
+      "Team Player"
+    ],
+    "coreValues": [
+      {
+        "title": "Quality:",
+        "description": "I believe in delivering high-quality code that is maintainable, scalable, and efficient."
+      },
+      {
+        "title": "Innovation:",
+        "description": "I constantly explore new technologies and approaches to solve problems more effectively."
+      },
+      {
+        "title": "User-Centric:",
+        "description": "I focus on creating solutions that prioritize user experience and accessibility."
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.E",
+        "institution": "Chandigarh University [ CU ]",
+        "years": "2020-2023"
+      },
+      {
+        "degree": "Diploma",
+        "institution": "Nettur Technical Traning Foundation [ NTTF ]",
+        "years": "2017-2020"
+      }
+    ],
+    "certifications": [
+      {
+        "title": "Fullstack Web Development Certification",
+        "institution": "Cuvette",
+        "years": "2023-2024"
+      }
+    ]
+  }
+}

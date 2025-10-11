@@ -1,0 +1,27 @@
+[
+  {
+    "name": "GitHub",
+    "icon": "FaGithub",
+    "url": "https://github.com/AJIT-KUMAR-PANDIT"
+  },
+  {
+    "name": "LinkedIn",
+    "icon": "FaLinkedinIn",
+    "url": "https://linkedin.com/in/ajitkumarpandit"
+  },
+  {
+    "name": "X",
+    "icon": "FaXTwitter",
+    "url": "https://twitter.com/AjitKrPandit"
+  },
+  {
+    "name": "Facebook",
+    "icon": "FaFacebook",
+    "url": "https://facebook.com/AjitKumarPanditOfficial"
+  },
+  {
+    "name": "Instagram",
+    "icon": "FaInstagram",
+    "url": "https://instagram.com/ajit.kumar.pandit"
+  }
+]

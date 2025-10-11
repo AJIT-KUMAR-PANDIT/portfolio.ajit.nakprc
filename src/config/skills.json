@@ -1,0 +1,117 @@
+[
+    {
+        "category": "Frontend",
+        "skills": [
+            {
+                "name": "Next.js",
+                "image": "/images/skills/nextjs-original.svg",
+                "link": "https://nextjs.org/"
+            },
+            {
+                "name": "React",
+                "image": "/images/skills/react-original.svg",
+                "link": "https://react.dev/"
+            },
+            {
+                "name": "HTML5",
+                "image": "/images/skills/html5-original.svg",
+                "link": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+            },
+            {
+                "name": "CSS3",
+                "image": "/images/skills/css3-original.svg",
+                "link": "https://developer.mozilla.org/en-US/docs/Web/CSS"
+            },
+            {
+                "name": "JavaScript",
+                "image": "/images/skills/javascript-original.svg",
+                "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+            },
+            {
+                "name": "TailwindCSS",
+                "image": "/images/skills/tailwindcss-original.svg",
+                "link": "https://tailwindcss.com/"
+            }
+        ]
+    },
+    {
+        "category": "Backend",
+        "skills": [
+            {
+                "name": "Node.js",
+                "image": "/images/skills/nodejs-original.svg",
+                "link": "https://nodejs.org/"
+            },
+            {
+                "name": "Express Js",
+                "image": "/images/skills/express-original.svg",
+                "link": "https://expressjs.com/"
+            },
+            {
+                "name": "Mongo DB",
+                "image": "/images/skills/mongodb-original.svg",
+                "link": "https://www.mongodb.com/"
+            }
+        ]
+    },
+    {
+        "category": "Security",
+        "skills": [
+            {
+                "name": "JWT",
+                "image": "/images/skills/jwt.png",
+                "link": "https://jwt.io/"
+            },
+            {
+                "name": "Bcrypt",
+                "image": "/images/skills/security.svg",
+                "link": "https://en.wikipedia.org/wiki/Bcrypt"
+            }
+        ]
+    },
+    {
+        "category": "Deployment",
+        "skills": [
+            {
+                "name": "Vercel",
+                "image": "/images/skills/vercel-original.svg",
+                "link": "https://vercel.com/"
+            },
+            {
+                "name": "Netlify",
+                "image": "/images/skills/netlify-original.svg",
+                "link": "https://www.netlify.com/"
+            },
+            {
+                "name": "Render",
+                "image": "/images/skills/renderco_logo.png",
+                "link": "https://render.com/"
+            },
+            {
+                "name": "Cloudflare",
+                "image": "/images/skills/cloudflare-original.svg",
+                "link": "https://www.cloudflare.com/"
+            },
+            {
+                "name": "cPanel",
+                "image": "/images/skills/cpanel.png",
+                "link": "https://cpanel.net/"
+            }
+        ]
+    },
+    {
+        "category": "Version Control",
+        "skills": [
+            {
+                "name": "Git",
+                "image": "/images/skills/git-original.svg",
+                "link": "https://git-scm.com/"
+            },
+            {
+                "name": "GitHub",
+                "image": "/images/skills/github-original.svg",
+                "link": "https://github.com/"
+            }
+        ]
+    }
+]

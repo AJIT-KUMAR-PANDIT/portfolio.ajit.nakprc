@@ -1,0 +1,67 @@
+[
+    {
+        "title": "Arena CMS",
+        "description": "A Next.js + Prismic powered content hub with flexible slices.",
+        "thumbnail": "/assets/loader.png",
+        "youtubeId": "dQw4w9WgXcQ",
+        "tags": [
+            "Next.js",
+            "Prismic",
+            "TailwindCSS"
+        ],
+        "demo": "https://arena-demo.vercel.app",
+        "source": "https://github.com/prismicio-community/nextjs-starter-prismic"
+    },
+    {
+        "title": "IoT Control Panel",
+        "description": "Home automation dashboard built with MQTT and Capacitor for real-time IoT control.",
+        "thumbnail": "/assets/loader.png",
+        "youtubeId": "LXb3EKWsInQ",
+        "tags": [
+            "React",
+            "MQTT",
+            "Capacitor"
+        ],
+        "demo": "https://openiot.vercel.app",
+        "source": "https://github.com/mqtt/mqtt.js"
+    },
+    {
+        "title": "AI Expense Tracker",
+        "description": "Cross-platform AI-powered expense tracking app with predictive analytics and charts.",
+        "thumbnail": "/assets/loader.png",
+        "youtubeId": "5qap5aO4i9A",
+        "tags": [
+            "React Native",
+            "AI",
+            "Finance"
+        ],
+        "demo": "https://ai-expense.vercel.app",
+        "source": "https://github.com/expo/examples"
+    },
+    {
+        "title": "Developer Portfolio",
+        "description": "Minimal and modern developer portfolio template using Next.js and TailwindCSS.",
+        "thumbnail": "/assets/loader.png",
+        "youtubeId": "1NrHkjlWVhM",
+        "tags": [
+            "Next.js",
+            "Portfolio",
+            "TailwindCSS"
+        ],
+        "demo": "https://next-portfolio-demo.vercel.app",
+        "source": "https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss"
+    },
+    {
+        "title": "CCTV Face Detection",
+        "description": "Real-time CCTV face detection system using Google Mediapipe and custom face recognition.",
+        "thumbnail": "/assets/loader.png",
+        "youtubeId": "",
+        "tags": [
+            "Mediapipe",
+            "Security",
+            "AI"
+        ],
+        "demo": "https://cctv-ai-demo.vercel.app",
+        "source": "https://github.com/google/mediapipe"
+    }
+]

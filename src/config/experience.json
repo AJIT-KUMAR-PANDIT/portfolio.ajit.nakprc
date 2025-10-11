@@ -1,0 +1,16 @@
+{
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "company": "Example Corp",
+      "years": "2022 - Present",
+      "description": "Developed and maintained web applications using React and Node.js."
+    },
+    {
+      "title": "Junior Developer",
+      "company": "Another Company",
+      "years": "2020 - 2022",
+      "description": "Assisted in the development of various software projects."
+    }
+  ]
+}
