@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Loader from '@/components/common/Loader/Loader';
-import Dock from '@/components/common/Dock/Dock';
-import { Nav } from '@/components/common/Nav/Nav';
+import React, { useState, useEffect } from "react";
+import Loader from "@/components/common/Loader/Loader";
+import Dock from "@/components/common/Dock/Dock";
+import { Nav } from "@/components/common/Nav/Nav";
 
 export default function ClientLayout({ children }) {
   const [loading, setLoading] = useState(true);

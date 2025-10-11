@@ -18,7 +18,7 @@ const HeroSection = () => {
           eNHANCING fUTURE wITH tECHNOLOGY
         </h5>
         <h6 className={clsx(styles["hero-text1"])}>
-          Building Digital Experiences|
+          Building Digital Experiences!
         </h6>
         <div className={clsx(styles["hero-btn"])}>
           <button className={clsx("btn-primary")}>Contact Me</button>

@@ -16,7 +16,7 @@
 }
 
 .hero-title {
-  @apply text-center text-5xl text-white font-bold;
+  @apply text-center text-4xl font-bold;
 
   border-right: 9px solid rgb(0, 98, 255);
   padding-right: 1rem;
@@ -48,11 +48,11 @@
 }
 
 .hero-text1 {
-  @apply text-center text-xl text-white font-bold mt-2;
+  @apply text-center text-xl  font-bold mt-2;
 }
 
 .hero-tagline {
-  @apply text-center text-2xl text-white font-bold mt-2;
+  @apply text-center text-xl  font-bold mt-2;
 }
 
 .hero-btn {
