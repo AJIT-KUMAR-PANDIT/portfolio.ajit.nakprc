@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 const HeroSection = () => {
   return (
-    <section className={clsx(styles.heroSection)}>
+    <section className={clsx(styles["hero-section"])}>
       <div className={styles["hero-left"]}>
         <h1 className={clsx(styles["hero-title"], "myFont")}>
           <Typewriter
@@ -14,7 +14,9 @@ const HeroSection = () => {
             pauseDuration={1000}
           />
         </h1>
-        <p className={styles["hero-subtitle"]}>Frontend Developer</p>
+        <p className={styles["hero-tagline"]}>
+          eNHANCING fUTURE wITH tECHNOLOGY
+        </p>
       </div>
       <div className={styles["hero-right"]}>
         <video autoPlay loop muted className={styles["background-video"]}>

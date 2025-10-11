@@ -1,12 +1,11 @@
-@use "@/styles/responsecss.module.scss" as *;
+@use "../../../styles/responsecss.module.scss" as *;
+@reference "tailwindcss";
 
 .hero-section {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas:
-    "hero-left"
-    "hero-right";
+  @apply flex justify-center items-center flex-col;
+
+  width: 100vw;
+  height: 100vh;
 
   @include mq(lg) {
     display: grid;
@@ -17,15 +16,13 @@
 }
 
 .hero-title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #fff;
+  @apply text-center text-4xl text-white font-bold;
+
+  border-right: 9px solid rgb(0, 98, 255);
+  padding-right: 1rem;
 }
 
 .background-video {
-  position: absolute;
-  top: 0;
-  right: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -34,8 +31,18 @@
 
 .hero-left {
   grid-area: hero-left;
+  @apply flex justify-center items-center flex-col;
+
+  @include mq(lg) {
+    @apply flex justify-start items-center flex-col;
+  }
 }
 
 .hero-right {
   grid-area: hero-right;
+  @apply flex justify-center items-center flex-col;
+
+  @include mq(lg) {
+    @apply flex justify-end items-center flex-col;
+  }
 }
