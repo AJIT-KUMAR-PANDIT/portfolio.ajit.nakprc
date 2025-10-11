@@ -1,11 +1,19 @@
+@use "@/styles/responsecss.module.scss" as *;
+
 .hero-section {
- 
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "hero-left"
+    "hero-right";
 
-  @apply flex flex-col;
-}
-
-.hero-section-pc {
-  @apply flex flex-row;
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "hero-left hero-right";
+  }
 }
 
 .hero-title {
@@ -17,9 +25,17 @@
 .background-video {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: -1;
+}
+
+.hero-left {
+  grid-area: hero-left;
+}
+
+.hero-right {
+  grid-area: hero-right;
 }
