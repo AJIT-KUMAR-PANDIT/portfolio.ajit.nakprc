@@ -1,71 +1,91 @@
 @reference "tailwindcss";
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .about-section {
   @apply py-16 px-4 dark:bg-gray-900 relative overflow-hidden;
 
   .title-main {
-    @apply text-3xl font-bold mb-8 text-center text-blue-400 dark:text-blue-300;
+    @apply text-4xl md:text-5xl font-extrabold mb-4 text-center tracking-tight;
   }
 
   .title-sub {
-    @apply text-[11vmin];
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight mb-12 text-center;
 
     .highlight {
-      @apply font-bold text-gray-600 dark:text-gray-400;
+      @apply font-bold;
     }
   }
 
   .content-wrapper {
-    @apply relative z-10 max-w-6xl mx-auto;
+    animation: fadeIn 1s ease-out forwards;
+    @apply relative z-10 max-w-6xl mx-auto px-4;
 
     .header-section {
-      @apply text-center mb-12;
+      @apply text-center mb-16;
 
       h2 {
-        @apply text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+        @apply text-4xl md:text-5xl font-bold mb-4;
       }
 
       p {
-        @apply text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto;
+        @apply text-lg md:text-xl max-w-3xl mx-auto leading-relaxed;
       }
     }
 
     .sections-container {
-      @apply space-y-12;
+      @apply space-y-16;
 
       .section-card {
-        @apply dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700;
+        @apply dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out;
+
+        &:hover {
+          @apply transform -translate-y-1 scale-105 shadow-xl;
+        }
 
         h3 {
-          @apply text-2xl font-bold mb-4 text-blue-400 dark:text-blue-300;
+          @apply text-2xl md:text-3xl font-bold mb-4;
         }
 
         p {
-          @apply text-gray-700 dark:text-gray-300 leading-relaxed;
+          @apply text-base md:text-lg leading-relaxed;
         }
       }
 
       .traits-grid {
-        @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10;
 
         .trait-card {
-          @apply dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-center;
+          @apply dark:bg-gray-800 p-6 md:p-10 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-center transition-all duration-300 ease-in-out;
+
+          &:hover {
+            @apply transform -translate-y-1 scale-105 shadow-xl;
+          }
 
           h3 {
-            @apply text-xl font-bold mb-2 text-blue-400 dark:text-blue-300;
+            @apply text-xl md:text-2xl font-bold mb-2;
           }
         }
       }
 
       .core-values-list {
-        @apply space-y-4;
+        @apply space-y-4 md:space-y-6;
 
         h4 {
-          @apply text-xl font-semibold text-gray-900 dark:text-white;
+          @apply text-lg md:text-xl font-semibold mb-1;
         }
 
         p {
-          @apply text-gray-700 dark:text-gray-300;
+          @apply text-base md:text-lg text-gray-700 dark:text-gray-300;
         }
       }
     }

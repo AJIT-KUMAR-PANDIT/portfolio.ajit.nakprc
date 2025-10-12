@@ -1,0 +1,78 @@
+@reference "tailwindcss";
+
+.project-arena {
+  @apply p-6;
+}
+
+.title {
+  @apply text-3xl font-bold mb-8 text-center;
+}
+
+.grid-container {
+  @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;
+}
+
+.project-card {
+  @apply dark:bg-neutral-900 shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl transition-shadow duration-300;
+}
+
+.video-thumbnail {
+  @apply relative h-56 w-full cursor-pointer;
+}
+
+.video-iframe {
+  @apply absolute top-0 left-0 w-full h-full object-cover pointer-events-none;
+}
+
+.loader-image {
+  @apply object-cover p-4;
+}
+
+.project-info {
+  @apply p-5;
+}
+
+.project-title {
+  @apply text-xl font-semibold mb-2;
+}
+
+.project-description {
+  @apply text-sm mb-4;
+}
+
+.tags-container {
+  @apply flex flex-wrap gap-2 mb-4;
+}
+
+.tag {
+  @apply px-3 py-1 text-xs rounded-full bg-neutral-200 dark:bg-neutral-700 text-black;
+}
+
+.links-container {
+  @apply flex gap-3;
+}
+
+.live-demo-link {
+  @apply text-sm font-medium text-blue-600 hover:underline flex items-center;
+}
+
+.source-code-link {
+  @apply text-sm font-medium text-green-600 hover:underline flex items-center;
+}
+
+.video-overlay {
+  @apply fixed inset-0 bg-black flex items-center justify-center z-50;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.video-modal-content {
+  @apply relative w-full max-w-4xl aspect-video;
+}
+
+.video-modal-iframe {
+  @apply w-full h-full rounded-lg;
+}
+
+.close-button {
+  @apply absolute -top-10 right-0 text-white text-3xl;
+}
