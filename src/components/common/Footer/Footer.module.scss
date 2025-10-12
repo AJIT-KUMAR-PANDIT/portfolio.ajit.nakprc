@@ -1,0 +1,104 @@
+@reference "tailwindcss";
+
+.footer-container {
+  @apply text-gray-800 py-10 px-4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .moving-text-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+
+  .moving-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: move-left-to-right 15s linear infinite;
+    font-size: 21vmin;
+    font-weight: bold;
+    color: #333;
+
+    background-image: url("/assets/aurabrain.gif");
+    background-size: cover;
+    background-position: center;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  @keyframes move-left-to-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .footer-top {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full mb-8;
+  }
+
+  .footer-section {
+    @apply flex flex-col items-center md:items-start text-center md:text-left;
+  }
+
+  .section-title {
+    @apply text-xl font-bold mb-2;
+  }
+
+  .section-subtitle {
+    @apply text-sm text-gray-500 mb-4;
+  }
+
+  .about-description {
+    @apply text-sm text-gray-600;
+  }
+
+  .quick-links-list {
+    @apply list-none p-0 m-0;
+
+    li {
+      @apply mb-2;
+    }
+  }
+
+  .footer-link {
+    @apply text-gray-600 hover:text-blue-600 transition-colors duration-300;
+  }
+
+  .contact-email,
+  .contact-phone {
+    @apply text-gray-600 mb-2;
+  }
+
+  .social-icons {
+    @apply flex space-x-4 mt-4;
+  }
+
+  .social-icon {
+    @apply text-gray-600 hover:text-blue-600 transition-colors duration-300 text-2xl;
+  }
+
+  .footer-bottom {
+    @apply border-t border-gray-200 pt-8 text-center text-sm text-gray-500;
+  }
+
+  .copyright {
+    @apply mb-2;
+  }
+
+  .designed-by {
+    @apply flex items-center justify-center;
+  }
+
+  .heart-icon {
+    @apply mx-1 text-red-500;
+  }
+}
