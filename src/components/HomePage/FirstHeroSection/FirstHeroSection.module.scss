@@ -1,0 +1,10 @@
+.my-text {
+  background-image: url("/assets/aurabrain.gif");
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 0.01px black;
+}

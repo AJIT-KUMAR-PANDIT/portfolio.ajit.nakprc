@@ -1,17 +1,22 @@
 import Typewriter from "@/components/ui/TypeWriter";
 import React from "react";
+import styles from "./FirstHeroSection.module.scss";
+import clsx from "clsx";
 
 export const FirstHeroSection = () => {
   return (
-    <>
-      <div className="text-[21vmin]  myFont h-screen overflow-hidden p-12">
+    <section className="flex justify-center items-center">
+      <div
+        className={clsx(
+          styles["my-text"],
+          styles["text-stroke"],
+          "overflow-hidden font-extrabold myFont"
+        )}
+      >
         <Typewriter
           texts={[
-            { text: "Hi", size: "text-[25vmin]" },
-            { text: "I am", size: "text-[21vmin]" },
-            { text: "AJIT KUMAR PANDIT", size: "text-[16vmin]" },
             {
-              text: "CREATIVE <br /> FULL STACK DEVELOPER",
+              text: "Hi, I <br/> Develop <br /> Design <br /> Publish <br /> Web Applications",
               size: "text-[9vmin]  ",
             },
           ]}
@@ -19,6 +24,6 @@ export const FirstHeroSection = () => {
           pauseDuration={1000}
         />
       </div>
-    </>
+    </section>
   );
 };

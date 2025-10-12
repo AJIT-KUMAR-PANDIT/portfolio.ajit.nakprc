@@ -5,6 +5,7 @@ import Typewriter from "@/components/ui/TypeWriter";
 import clsx from "clsx";
 import SocialMediaSection from "@/components/common/SocialMediaSection/SocialMediaSection";
 import axios from "axios";
+import { FirstHeroSection } from "../FirstHeroSection/FirstHeroSection";
 
 const HeroSection = () => {
   const [heroData, setHeroData] = useState(null);
@@ -28,21 +29,7 @@ const HeroSection = () => {
   return (
     <section className={clsx(styles["hero-section"])}>
       <div className={clsx(styles["hero-left"])}>
-        <h1 className={clsx(styles["hero-title"], "myFont")}>
-          <Typewriter
-            texts={["Hi", "I am", heroData.name, heroData.dev]}
-            typingSpeed={150}
-            pauseDuration={1000}
-          />
-        </h1>
-        <h5 className={clsx(styles["hero-tagline"])}>{heroData.tagline}</h5>
-        <h6 className={clsx(styles["hero-text1"])}>
-          Building Digital Experiences!
-        </h6>
-        <div className={clsx(styles["hero-btn"])}>
-          <button className={clsx("btn-primary")}>Contact Me</button>
-          <button className={clsx("btn-secondary")}>View My Work</button>
-        </div>
+        <FirstHeroSection />
         <SocialMediaSection />
       </div>
       <div className={clsx(styles["hero-right"])}>

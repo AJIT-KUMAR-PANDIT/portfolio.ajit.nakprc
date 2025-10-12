@@ -13,31 +13,28 @@ const Typewriter = ({ texts, typingSpeed = 150, pauseDuration = 1000 }) => {
       const currentItem = texts[textIndex];
       const currentText = currentItem.text;
 
-      if (charIndex < currentText.length) {
-        setDisplayedText((prev) => prev + currentText[charIndex]);
-        setCharIndex((prev) => prev + 1);
-      } else {
-        // Text fully typed
-        if (textIndex === texts.length - 1) {
-          // If it's the last text, stop here
-          return;
+      if (!isDeleting) {
+        if (charIndex < currentText.length) {
+          setDisplayedText((prev) => prev + currentText[charIndex]);
+          setCharIndex((prev) => prev + 1);
+        } else {
+          setTimeout(() => setIsDeleting(true), pauseDuration);
         }
-        // Otherwise, move to the next text after a pause
-        setTimeout(() => {
-          setDisplayedText(""); // Clear displayed text for the next word
-          setCharIndex(0);
+      } else {
+        if (charIndex > 0) {
+          setDisplayedText((prev) => prev.substring(0, prev.length - 1));
+          setCharIndex((prev) => prev - 1);
+        } else {
+          setIsDeleting(false);
           setTextIndex((prev) => (prev + 1) % texts.length);
-        }, pauseDuration);
+        }
       }
     };
 
-    // Only set timeout if there's more to type or it's not the last text
-    const shouldContinueTyping = !(textIndex === texts.length - 1 && charIndex === texts[textIndex].text.length);
-
-    let timeout;
-    if (shouldContinueTyping) {
-      timeout = setTimeout(handleTyping, typingSpeed);
-    }
+    const timeout = setTimeout(
+      handleTyping,
+      isDeleting ? typingSpeed / 2 : typingSpeed
+    );
 
     return () => clearTimeout(timeout);
   }, [charIndex, isDeleting, textIndex, texts, typingSpeed, pauseDuration]);
