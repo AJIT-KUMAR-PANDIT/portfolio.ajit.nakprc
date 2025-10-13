@@ -3,6 +3,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import "@/styles/globals.scss";
 import ClientLayout from "@/components/common/ClientLayout/ClientLayout";
+import LaserPointer from "@/components/common/LaserPointer/LaserPointer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       >
         <ThemeProvider attribute="class">
           <ClientLayout>{children}</ClientLayout>
+          <LaserPointer />
         </ThemeProvider>
       </body>
     </html>

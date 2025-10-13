@@ -1,0 +1,117 @@
+.laserTrail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.laserLine {
+  stroke: #ff0040;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 4px #ff0040) drop-shadow(0 0 8px #ff0040);
+  animation: pulse 0.3s ease-out;
+}
+
+.laserPointer {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+.laserDot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #ff0040 0%, #ff0040 40%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: dotPulse 1s ease-in-out infinite;
+}
+
+.laserGlow {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 0, 64, 0.6) 0%,
+    rgba(255, 0, 64, 0.3) 30%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+.crosshair {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+
+  .crosshairLine {
+    position: absolute;
+    background: rgba(255, 0, 64, 0.5);
+
+    &:first-child {
+      width: 1px;
+      height: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &:last-child {
+      width: 20px;
+      height: 1px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// Hide default cursor globally
+:global(body) {
+  cursor: none !important;
+
+  * {
+    cursor: none !important;
+  }
+}
