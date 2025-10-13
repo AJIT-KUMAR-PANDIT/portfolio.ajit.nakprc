@@ -24,11 +24,13 @@
     .highlight {
       @apply font-bold text-[9vmin];
       background-image: url("/assets/aurabrain.gif");
-      background-size: cover;
+      background-size: 81px;
       background-position: center;
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+
+      -webkit-text-stroke: 1px rgba(241, 9, 9, 0.5);
     }
   }
 
