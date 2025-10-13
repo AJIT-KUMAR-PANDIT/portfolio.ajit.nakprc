@@ -19,10 +19,16 @@
   }
 
   .title-sub {
-    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight mb-12 text-center;
+    @apply text-[7vmin] leading-tight mb-12 text-center;
 
     .highlight {
-      @apply font-bold;
+      @apply font-bold text-[9vmin];
+      background-image: url("/assets/aurabrain.gif");
+      background-size: cover;
+      background-position: center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
   }
 

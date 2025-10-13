@@ -109,7 +109,7 @@
 
 // Hide default cursor globally
 :global(body) {
-  cursor: none !important;
+  cursor: url('/file.svg'), auto !important;
 
   * {
     cursor: none !important;
