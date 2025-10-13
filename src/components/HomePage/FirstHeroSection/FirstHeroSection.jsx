@@ -16,7 +16,7 @@ export const FirstHeroSection = () => {
         <Typewriter
           texts={[
             {
-              text: "Hi, I <br/> Develop <br /> Design <br /> Publish <br /> Web Applications",
+              text: "Hi, I <br/> Design <br /> Develop <br /> Deploy <br /> Web Applications",
               size: "text-[9vmin]  ",
             },
           ]}

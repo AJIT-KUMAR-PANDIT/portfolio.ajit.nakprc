@@ -34,10 +34,10 @@ export default function AboutSection() {
       </div>
 
       <div className={clsx(styles["content-wrapper"])}>
-        <div className={clsx(styles["header-section"])}>
+        {/* <div className={clsx(styles["header-section"])}>
           <h2>{aboutMe.title}</h2>
           <p>{aboutMe.subtitle}</p>
-        </div>
+        </div> */}
 
         <div className={clsx(styles["sections-container"])}>
           {/* My Story */}
