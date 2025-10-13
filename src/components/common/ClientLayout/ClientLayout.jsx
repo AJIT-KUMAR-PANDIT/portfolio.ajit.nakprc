@@ -21,7 +21,7 @@ export default function ClientLayout({ children }) {
       ) : (
         <>
           <Nav />
-          <div className="mt-[10vmin]" />
+          <div className="mt-[5vmin]" />
           {children}
           <Dock />
         </>
