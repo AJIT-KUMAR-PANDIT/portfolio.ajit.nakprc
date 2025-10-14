@@ -1,3 +1,5 @@
+@import "@/styles/laser.scss";
+
 .contactSection {
   padding: 4rem 1rem;
   position: relative;
@@ -180,6 +182,8 @@
   @media (prefers-color-scheme: dark) {
     border-color: #374151;
   }
+
+  @include laser-glow;
 }
 
 .contactFormTitle {
@@ -256,9 +260,7 @@
 
   &:focus {
     outline: none;
-    ring-width: 2px;
-    ring-color: #3b82f6;
-    border-color: transparent;
+    border-color: #4caf50; /* Green color for focus */
   }
 
   @media (prefers-color-scheme: dark) {
