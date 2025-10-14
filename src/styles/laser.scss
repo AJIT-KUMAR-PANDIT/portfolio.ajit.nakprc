@@ -2,7 +2,7 @@
   // border laser
 
   border: 2px solid #0ff; /* Optional border for a techy look */
-  animation: laser-glow 2s infinite alternate; /* Animates the box-shadow */
+  animation: laser-glow 2s alternate; /* Animates the box-shadow */
 
   @keyframes laser-glow {
     0% {

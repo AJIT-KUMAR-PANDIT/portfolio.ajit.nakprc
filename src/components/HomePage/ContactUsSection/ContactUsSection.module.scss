@@ -61,6 +61,11 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  &:hover {
+    @include laser-glow;
+    border-radius: 1.5rem;
+  }
 }
 
 .contactInfoCard {
@@ -183,7 +188,10 @@
     border-color: #374151;
   }
 
-  @include laser-glow;
+  &:hover {
+    @include laser-glow;
+    border-radius: 1.5rem;
+  }
 }
 
 .contactFormTitle {
@@ -320,6 +328,11 @@
 .callToAction {
   text-align: center;
   margin-top: 4rem;
+
+  &:hover {
+    @include laser-glow;
+    border-radius: 1.5rem;
+  }
 }
 
 .callToActionCard {
