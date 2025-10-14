@@ -8,6 +8,7 @@ export async function submitContactForm(formData) {
   const name = formData.get("name");
   const emailAddress = formData.get("emailAddress");
   const phoneNumber = formData.get("phoneNumber");
+  const subject = formData.get("subject");
   const message = formData.get("message");
   const submissionDate = new Date().toISOString();
 
@@ -19,6 +20,7 @@ export async function submitContactForm(formData) {
       name,
       emailAddress,
       phoneNumber,
+      subject,
       message,
       submissionDate,
     },

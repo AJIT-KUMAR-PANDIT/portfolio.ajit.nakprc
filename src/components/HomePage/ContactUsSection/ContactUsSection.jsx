@@ -18,6 +18,7 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "",
     phone: "",
     message: "",
   });
@@ -70,6 +71,7 @@ export default function ContactSection() {
         name: "",
         emailAddress: "",
         phoneNumber: "",
+        subject: "",
         message: "",
       });
     } else {
@@ -184,6 +186,22 @@ export default function ContactSection() {
                     required
                     className={clsx(styles.input)}
                     placeholder="Enter your email address"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className={clsx(styles.label)}>
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className={clsx(styles.input)}
+                    placeholder="Enter the subject"
                   />
                 </div>
 
