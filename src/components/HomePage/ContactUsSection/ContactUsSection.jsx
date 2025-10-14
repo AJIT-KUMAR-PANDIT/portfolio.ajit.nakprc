@@ -2,13 +2,13 @@
 import clsx from "clsx";
 import styles from "./ContactUsSection.module.scss";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedinIn, FaGithub, FaCheckCircle, FaPaperPlane } from 'react-icons/fa';
-// ... existing code ...
 import React, { useState, useEffect } from 'react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '', 
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,7 +39,6 @@ export default function ContactSection() {
     });
   };
 
-// ... existing code ...
   return (
     <section className={clsx(styles.contactSection)}>
       <div className={clsx(styles.contentWrapper)}>
@@ -179,6 +178,24 @@ export default function ContactSection() {
                     required
                     className={clsx(styles.input)}
                     placeholder="Enter your email address"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className={clsx(styles.label)}
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className={clsx(styles.input)}
+                    placeholder="Enter your phone number (optional)"
                   />
                 </div>
 

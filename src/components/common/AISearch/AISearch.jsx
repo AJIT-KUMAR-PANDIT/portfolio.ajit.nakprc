@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search, Sparkles } from "lucide-react";
+import { Search, Sparkles, Mic } from "lucide-react";
 import clsx from "clsx";
 import styles from "./AISearch.module.scss";
 import AIModal from "../AIModal/AIModal";
@@ -61,6 +61,16 @@ export default function AISearch({ setShowAIModal, setAiAnswer }) {
           )}
         >
           <Sparkles className={styles.sparklesIcon} />
+        </button>
+        <button
+          type="button"
+          className={clsx(
+            styles.micButton,
+            "hover:bg-blue-600/20"
+          )}
+          onClick={() => console.log("Mic button clicked!")}
+        >
+          <Mic className={styles.micIcon} />
         </button>
       </form>
     </div>
