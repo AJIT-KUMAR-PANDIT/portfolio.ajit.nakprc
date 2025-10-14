@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Search, Sparkles } from "lucide-react";
 import clsx from "clsx";
 import styles from "./AISearch.module.scss";
+import AIModal from "../AIModal/AIModal";
 
-export default function AISearch() {
+export default function AISearch({ setShowAIModal, setAiAnswer }) {
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
 
@@ -13,7 +14,9 @@ export default function AISearch() {
     e.preventDefault();
     if (!query.trim()) return;
     console.log("AI Search Query:", query);
-    // TODO: Integrate with your AI or backend search endpoint
+    // Simulate fetching an answer
+    setAiAnswer(`This is a simulated answer for your query: "${query}"`);
+    setShowAIModal(true);
     setQuery("");
   };
 

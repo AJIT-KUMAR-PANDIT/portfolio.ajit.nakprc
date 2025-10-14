@@ -4,7 +4,6 @@ import "./globals.css";
 import "@/styles/globals.scss";
 import ClientLayout from "@/components/common/ClientLayout/ClientLayout";
 import LaserPointer from "@/components/common/LaserPointer/LaserPointer";
-import AISearch from "@/components/common/AISearch/AISearch";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +30,6 @@ export default function RootLayout({ children }) {
         <ThemeProvider attribute="class">
           <ClientLayout>{children}</ClientLayout>
           <LaserPointer />
-          <AISearch />
         </ThemeProvider>
       </body>
     </html>
