@@ -7,7 +7,7 @@
 
   @media (max-width: 768px) {
     flex-direction: column;
-    min-height: 200vh; // Ensure enough scroll space for pinning
+    min-height: 200vh;
   }
 
   @media (min-width: 769px) {
@@ -22,7 +22,7 @@
   width: 50%;
   height: 100vh;
   overflow: hidden;
-  z-index: 100;
+  z-index: 10;
 
   @media (max-width: 768px) {
     position: relative;
