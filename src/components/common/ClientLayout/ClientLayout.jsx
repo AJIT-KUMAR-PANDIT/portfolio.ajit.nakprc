@@ -30,12 +30,9 @@ export default function ClientLayout({ children }) {
       ) : (
         <>
           <Nav />
-          <div className="mt-[5vmin]">{children}</div>
+          {children}
           <Dock />
-          <AISearch
-            setShowAIModal={setShowAIModal}
-            setAiAnswer={setAiAnswer}
-          />
+          <AISearch setShowAIModal={setShowAIModal} setAiAnswer={setAiAnswer} />
           <AIModal
             show={showAIModal}
             onClose={closeAIModal}
