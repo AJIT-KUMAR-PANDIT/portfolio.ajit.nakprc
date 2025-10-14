@@ -2,14 +2,12 @@
 
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Lenis from "lenis";
 import clsx from "clsx";
 import styles from "./SkillsSection.module.scss";
 
 export default function SkillsSection() {
   const [skillsData, setSkillsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const lenisRef = useRef(null);
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -23,30 +21,6 @@ export default function SkillsSection() {
       }
     };
     fetchSkills();
-  }, []);
-
-  useEffect(() => {
-    // Initialize Lenis smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 2,
-    });
-
-    lenisRef.current = lenis;
-
-    const raf = (time) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-
-    requestAnimationFrame(raf);
-
-    return () => lenis.destroy();
   }, []);
 
   return (
