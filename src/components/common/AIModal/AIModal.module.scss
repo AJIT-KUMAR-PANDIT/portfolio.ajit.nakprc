@@ -1,3 +1,5 @@
+@import "../../../styles/responsecss.module.scss";
+
 .overlay {
   position: fixed;
   top: 0;
@@ -16,12 +18,17 @@
   background-color: #1a1a1a;
   padding: 2rem;
   border-radius: 10px;
-  max-width: 80%;
-  max-height: 80%;
-  overflow-y: auto;
+  width: 90vw;
+  height: 58vh;
+  overflow-y: scroll;
   position: relative;
   color: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+  @include mq(lg) {
+    width: 40%;
+    height: 58vh;
+  }
 }
 
 .closeButton {
