@@ -1,4 +1,4 @@
-// SkillsSection.module.scss
+@import "@/styles/laser.scss";
 
 .skillsSection {
   position: relative;
@@ -162,6 +162,11 @@
 
     .skillIcon {
       transform: scale(1.1) rotate(5deg);
+    }
+
+    &:hover {
+      @include laser-glow;
+      border-radius: 1.5rem;
     }
   }
 
