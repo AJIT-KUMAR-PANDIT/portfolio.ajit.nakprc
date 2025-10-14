@@ -12,6 +12,7 @@ import {
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SocialMediaSection from "@/components/common/SocialMediaSection/SocialMediaSection";
+import { submitContactForm } from "@/app/actions/ContactForm";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -58,17 +59,25 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-    console.log("Form submitted:", formData);
+    const result = await submitContactForm(formData);
+
+    if (result.success) {
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        emailAddress: "",
+        phoneNumber: "",
+        message: "",
+      });
+    } else {
+      console.error("Form submission failed:", result.message);
+      alert("Failed to send message. Please try again later.");
+    }
+
     setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
   };
 
   return (
@@ -169,8 +178,8 @@ export default function ContactSection() {
                   <input
                     type="email"
                     id="email"
-                    name="email"
-                    value={formData.email}
+                    name="emailAddress"
+                    value={formData.emailAddress}
                     onChange={handleChange}
                     required
                     className={clsx(styles.input)}
@@ -185,8 +194,8 @@ export default function ContactSection() {
                   <input
                     type="tel"
                     id="phone"
-                    name="phone"
-                    value={formData.phone}
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
                     onChange={handleChange}
                     className={clsx(styles.input)}
                     placeholder="Enter your phone number (optional)"
