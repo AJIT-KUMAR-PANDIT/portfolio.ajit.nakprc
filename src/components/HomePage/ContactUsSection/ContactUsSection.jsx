@@ -1,18 +1,50 @@
 "use client";
 import clsx from "clsx";
 import styles from "./ContactUsSection.module.scss";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedinIn, FaGithub, FaCheckCircle, FaPaperPlane } from 'react-icons/fa';
-import React, { useState, useEffect } from 'react';
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaCheckCircle,
+  FaPaperPlane,
+} from "react-icons/fa";
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import SocialMediaSection from "@/components/common/SocialMediaSection/SocialMediaSection";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '', 
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [contactInfo, setContactInfo] = useState({
+    email: "loading...",
+    phone: "loading...",
+    location: "loading...",
+  });
+
+  useEffect(() => {
+    const fetchContactInfo = async () => {
+      try {
+        const response = await axios.get("/api/contact");
+        setContactInfo(response.data);
+      } catch (error) {
+        console.error("Error fetching contact info:", error);
+        setContactInfo({
+          email: "error loading",
+          phone: "error loading",
+          location: "error loading",
+        });
+      }
+    };
+
+    fetchContactInfo();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,13 +61,13 @@ export default function ContactSection() {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     setIsSubmitting(false);
     setIsSubmitted(true);
     setFormData({
-      name: '',
-      email: '',
-      message: '',
+      name: "",
+      email: "",
+      message: "",
     });
   };
 
@@ -43,9 +75,7 @@ export default function ContactSection() {
     <section className={clsx(styles.contactSection)}>
       <div className={clsx(styles.contentWrapper)}>
         <div className={clsx(styles.textCenter)}>
-          <h2 className={clsx(styles.connectTitle)}>
-            Let's Connect
-          </h2>
+          <h2 className={clsx(styles.connectTitle)}>Let's Connect</h2>
           <p className={clsx(styles.connectDescription)}>
             Have a project in mind? I'd love to hear about it. Send me a message
             and let's create something amazing together.
@@ -56,20 +86,16 @@ export default function ContactSection() {
           {/* Contact Information */}
           <div className={clsx(styles.contactInfo)}>
             <div className={clsx(styles.contactInfoCard)}>
-              <h3 className={clsx(styles.contactInfoTitle)}>
-                Get In Touch
-              </h3>
+              <h3 className={clsx(styles.contactInfoTitle)}>Get In Touch</h3>
               <div className={clsx(styles.contactInfoDetails)}>
                 <div className={clsx(styles.contactInfoItem)}>
                   <div className={clsx(styles.contactInfoIconWrapper)}>
                     <FaEnvelope className={clsx(styles.contactInfoIcon)} />
                   </div>
                   <div>
-                    <p className={clsx(styles.contactInfoLabel)}>
-                      Email
-                    </p>
+                    <p className={clsx(styles.contactInfoLabel)}>Email</p>
                     <p className={clsx(styles.contactInfoValue)}>
-                      ajit@example.com
+                      {contactInfo.email}
                     </p>
                   </div>
                 </div>
@@ -79,11 +105,9 @@ export default function ContactSection() {
                     <FaPhone className={clsx(styles.contactInfoIcon)} />
                   </div>
                   <div>
-                    <p className={clsx(styles.contactInfoLabel)}>
-                      Phone
-                    </p>
+                    <p className={clsx(styles.contactInfoLabel)}>Phone</p>
                     <p className={clsx(styles.contactInfoValue)}>
-                      +1 (555) 123-4567
+                      {contactInfo.phone}
                     </p>
                   </div>
                 </div>
@@ -93,50 +117,29 @@ export default function ContactSection() {
                     <FaMapMarkerAlt className={clsx(styles.contactInfoIcon)} />
                   </div>
                   <div>
-                    <p className={clsx(styles.contactInfoLabel)}>
-                      Location
-                    </p>
+                    <p className={clsx(styles.contactInfoLabel)}>Location</p>
                     <p className={clsx(styles.contactInfoValue)}>
-                      Your City, Country
+                      {contactInfo.location}
                     </p>
                   </div>
                 </div>
               </div>
 
               <div className={clsx(styles.socialLinks)}>
-                <p className={clsx(styles.socialLinksLabel)}>
-                  Follow me on:
-                </p>
-                <div className={clsx(styles.socialIcons)}>
-                  <a
-                    href="#"
-                    className={clsx(styles.socialIconLink)}
-                  >
-                    <FaLinkedinIn className={clsx(styles.socialIcon)} />
-                  </a>
-                  <a
-                    href="#"
-                    className={clsx(styles.socialIconLink)}
-                  >
-                    <FaGithub className={clsx(styles.socialIcon)} />
-                  </a>
-                </div>
+                <p className={clsx(styles.socialLinksLabel)}>Follow me on:</p>
+                <SocialMediaSection />
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
           <div className={clsx(styles.contactFormWrapper)}>
-            <h3 className={clsx(styles.contactFormTitle)}>
-              Send Me a Message
-            </h3>
+            <h3 className={clsx(styles.contactFormTitle)}>Send Me a Message</h3>
 
             {isSubmitted ? (
               <div className={clsx(styles.messageSent)}>
                 <FaCheckCircle className={clsx(styles.messageSentIcon)} />
-                <h4 className={clsx(styles.messageSentTitle)}>
-                  Message Sent!
-                </h4>
+                <h4 className={clsx(styles.messageSentTitle)}>Message Sent!</h4>
                 <p className={clsx(styles.messageSentDescription)}>
                   Thank you for reaching out. I'll get back to you soon!
                 </p>
@@ -144,10 +147,7 @@ export default function ContactSection() {
             ) : (
               <form onSubmit={handleSubmit} className={clsx(styles.form)}>
                 <div>
-                  <label
-                    htmlFor="name"
-                    className={clsx(styles.label)}
-                  >
+                  <label htmlFor="name" className={clsx(styles.label)}>
                     Full Name
                   </label>
                   <input
@@ -163,10 +163,7 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className={clsx(styles.label)}
-                  >
+                  <label htmlFor="email" className={clsx(styles.label)}>
                     Email Address
                   </label>
                   <input
@@ -182,10 +179,7 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="phone"
-                    className={clsx(styles.label)}
-                  >
+                  <label htmlFor="phone" className={clsx(styles.label)}>
                     Phone Number
                   </label>
                   <input
@@ -200,10 +194,7 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="message"
-                    className={clsx(styles.label)}
-                  >
+                  <label htmlFor="message" className={clsx(styles.label)}>
                     Message
                   </label>
                   <textarea
@@ -253,16 +244,10 @@ export default function ContactSection() {
               technology and innovative solutions.
             </p>
             <div className={clsx(styles.callToActionButtons)}>
-              <a
-                href="#"
-                className={clsx(styles.callToActionButtonPrimary)}
-              >
+              <a href="#" className={clsx(styles.callToActionButtonPrimary)}>
                 Schedule a Call
               </a>
-              <a
-                href="#"
-                className={clsx(styles.callToActionButtonSecondary)}
-              >
+              <a href="#" className={clsx(styles.callToActionButtonSecondary)}>
                 View My Work
               </a>
             </div>
