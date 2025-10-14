@@ -244,7 +244,12 @@ export default function ContactSection() {
               technology and innovative solutions.
             </p>
             <div className={clsx(styles.callToActionButtons)}>
-              <a href="#" className={clsx(styles.callToActionButtonPrimary)}>
+              <a
+                href={contactInfo.scheduleCallUrl}
+                className={clsx(styles.callToActionButtonPrimary)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Schedule a Call
               </a>
               <a href="#" className={clsx(styles.callToActionButtonSecondary)}>
