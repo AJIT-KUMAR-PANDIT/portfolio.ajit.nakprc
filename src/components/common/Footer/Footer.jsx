@@ -96,7 +96,7 @@ export const Footer = () => {
           © 2025 Ajit Kumar Pandit. All rights reserved.
         </p>
         <p className={clsx(styles["designed-by"])}>
-          Designed and Developed with{" "}
+          Designed and Developed with
           <span className={clsx(styles["heart-icon"])}>❤️</span> by Ajit Kumar
           Pandit
         </p>

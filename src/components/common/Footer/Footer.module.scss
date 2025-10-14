@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .footer-container {
-  @apply text-gray-800 py-10 px-4;
+  @apply py-10 px-4 pb-44;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,11 +54,11 @@
   }
 
   .section-subtitle {
-    @apply text-sm text-gray-500 mb-4;
+    @apply text-sm  mb-4;
   }
 
   .about-description {
-    @apply text-sm text-gray-600;
+    @apply text-sm;
   }
 
   .quick-links-list {
@@ -70,12 +70,12 @@
   }
 
   .footer-link {
-    @apply text-gray-600 hover:text-blue-600 transition-colors duration-300;
+    @apply hover:text-blue-600 transition-colors duration-300;
   }
 
   .contact-email,
   .contact-phone {
-    @apply text-gray-600 mb-2;
+    @apply mb-2;
   }
 
   .social-icons {
@@ -83,11 +83,11 @@
   }
 
   .social-icon {
-    @apply text-gray-600 hover:text-blue-600 transition-colors duration-300 text-2xl;
+    @apply hover:text-blue-600 transition-colors duration-300 text-2xl;
   }
 
   .footer-bottom {
-    @apply border-t border-gray-200 pt-8 text-center text-sm text-gray-500;
+    @apply border-t border-gray-200 pt-8 text-center text-sm;
   }
 
   .copyright {
