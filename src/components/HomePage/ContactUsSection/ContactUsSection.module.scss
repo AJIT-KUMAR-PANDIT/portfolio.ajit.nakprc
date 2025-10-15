@@ -1,4 +1,4 @@
-@use "@/styles/laser.scss" as laser;
+@import "@/styles/laser.scss";
 
 .contactSection {
   padding: 4rem 1rem;
@@ -75,7 +75,7 @@
   }
 
   &:hover {
-    @include laser.laser-glow;
+    @include laser-glow;
     border-radius: 1.5rem;
   }
 }

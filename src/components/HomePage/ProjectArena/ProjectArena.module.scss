@@ -1,5 +1,5 @@
 @reference "tailwindcss";
-@use "@/styles/laser.scss" as laser;
+@import "@/styles/laser.scss";
 
 .project-arena {
   @apply p-6;
@@ -17,7 +17,7 @@
   @apply dark:bg-neutral-900 shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl transition-shadow duration-300;
 
   &:hover {
-    @include laser.laser-glow;
+    @include laser-glow;
     border-radius: 1.5rem;
   }
 }
