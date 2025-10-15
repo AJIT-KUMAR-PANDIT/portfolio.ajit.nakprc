@@ -1,0 +1,8 @@
+# robots.txt for https://ajitkumarpandit.nakprc.com
+
+User-agent: *
+Disallow: /admin/
+
+Allow: /
+
+Sitemap: https://ajitkumarpandit.nakprc.com/blog/sitemap.xml
