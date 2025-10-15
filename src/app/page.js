@@ -1,21 +1,25 @@
-import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
-import AboutSection from "@/components/HomePage/AboutSection/AboutSection";
-import SkillsSection from "@/components/HomePage/SkillsSection/SkillsSection";
-import ProjectArena from "@/components/HomePage/ProjectArena/ProjectArena";
-import ContactUsSection from "@/components/HomePage/ContactUsSection/ContactUsSection";
-import { Footer } from "@/components/common/Footer/Footer";
-import { FirstHeroSection } from "@/components/HomePage/FirstHeroSection/FirstHeroSection";
+import React, { Suspense } from 'react';
+
+const HeroSection = React.lazy(() => import("@/components/HomePage/HeroSection/HeroSection"));
+const AboutSection = React.lazy(() => import("@/components/HomePage/AboutSection/AboutSection"));
+const SkillsSection = React.lazy(() => import("@/components/HomePage/SkillsSection/SkillsSection"));
+const ProjectArena = React.lazy(() => import("@/components/HomePage/ProjectArena/ProjectArena"));
+const ContactUsSection = React.lazy(() => import("@/components/HomePage/ContactUsSection/ContactUsSection"));
+const Footer = React.lazy(() => import("@/components/common/Footer/Footer").then(module => ({ default: module.Footer })));
+const FirstHeroSection = React.lazy(() => import("@/components/HomePage/FirstHeroSection/FirstHeroSection").then(module => ({ default: module.FirstHeroSection })));
 
 export default function Home() {
   return (
     <>
       <main>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectArena />
-        <ContactUsSection />
-        <Footer />
+        <Suspense fallback={<div>Loading...</div>}>
+          <HeroSection />
+          <AboutSection />
+          <SkillsSection />
+          <ProjectArena />
+          <ContactUsSection />
+          <Footer />
+        </Suspense>
       </main>
     </>
   );
