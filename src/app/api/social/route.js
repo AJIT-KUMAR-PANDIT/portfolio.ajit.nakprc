@@ -1,13 +1,11 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import { NextResponse } from 'next/server';
+import socialData from '../../../config/social.json';
 
 export const runtime = 'edge';
 
 export async function GET() {
-  const socialPath = path.join(process.cwd(), 'src', 'config', 'social.json');
-  const socialData = await fs.readFile(socialPath, 'utf8');
-
-  return new Response(socialData, {
+  return new Response(JSON.stringify(socialData), {
+    status: 200,
     headers: {
       'Content-Type': 'application/json',
     },
