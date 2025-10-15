@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import path from "path";
 import { promises as fs } from "fs";
 
+export const runtime = 'edge';
+
 export async function GET() {
   //Get the path to the JSON file
   const jsonDirectory = path.join(process.cwd(), "src", "config");

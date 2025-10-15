@@ -1,6 +1,8 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
+export const runtime = 'edge';
+
 export async function GET() {
   const socialPath = path.join(process.cwd(), 'src', 'config', 'social.json');
   const socialData = await fs.readFile(socialPath, 'utf8');
