@@ -4,6 +4,7 @@ import "./globals.css";
 import "@/styles/globals.scss";
 import ClientLayout from "@/components/common/ClientLayout/ClientLayout";
 import LaserPointer from "@/components/common/LaserPointer/LaserPointer";
+import SchemaMarkupAjitKumarPandit from "../../schema/SchemaMarkupAjitKumarPandit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
+        <SchemaMarkupAjitKumarPandit />
         <ThemeProvider attribute="class">
           <ClientLayout>{children}</ClientLayout>
           <LaserPointer />

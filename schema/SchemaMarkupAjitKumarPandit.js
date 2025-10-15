@@ -63,6 +63,10 @@ const SchemaMarkupAjitKumarPandit = () => {
                 "MongoDB", "Next.js", "TailwindCSS", "Git", "Ionic React"
             ]
         },
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Self-employed"
+        },
         "email": "ajit@nakprc.com",
         "gender": "Male",
         "nationality": {
