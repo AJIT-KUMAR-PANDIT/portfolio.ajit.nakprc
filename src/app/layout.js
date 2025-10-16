@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "AJIT KUMAR PANDIT | Portfolio",
+  title: "AJIT KUMAR PANDIT :::=> A Full Stack Web Developer",
   description:
-    "AJIT KUMAR PANDIT | Portfolio |Full Stack Web Developer | Web Developer | React.js | Next.js | Node.js | Express.js | MongoDB | Mongoose | HTML | CSS | JavaScript | TypeScript | SCSS | Tailwind CSS | Git | GitHub | Netlify | Vercel | Cloudflare Workers | Cloudflare Pages | Cloudflare D1 | Cloudflare KV | Cloudflare R2 | Cloudflare AI | Cloudflare Workers AI | Cloudflare Workers KV | Cloudflare Workers R2 | Cloudflare Workers AI R2",
+    "AJIT KUMAR PANDIT is A Full Stack Web Developer! Welcome to the digital world of Ajit Kumar Pandit! Ajit is a passionate Full Stack Web Developer known for crafting innovative and user-friendly web applications. With a unique blend of creativity and technical expertise, he dedicates himself to building digital solutions that not only meet the client's needs but also exceed expectations.",
 };
 
 export default function RootLayout({ children }) {
