@@ -1,189 +1,132 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Search, Sparkles, Mic, StopCircle, Send } from "lucide-react";
 import clsx from "clsx";
 import styles from "./AISearch.module.scss";
-import { initSTT, startSTT, stopSTT, addSTTCommand } from "@/utils/stt";
-import { speakText } from "@/utils/tts";
+import { useSpeechRecognition } from "@lobehub/tts/react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function AISearch() {
-  const [query, setQuery] = useState("");
-  const [focused, setFocused] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false); // New state for tracking TTS
+  const { text, start, stop, isLoading } = useSpeechRecognition("en-US", {
+    autoStop: true,
+  });
+  const [inputValue, setInputValue] = useState("");
+  const [AIResponse, setAIResponse] = useState("");
+  const [loadingAIResponse, setLoadingAIResponse] = useState(false);
+  const [currentAudio, setCurrentAudio] = useState(null);
 
-  useEffect(() => {
-    // Initialize STT
-    initSTT();
-
-    // Add a command to update the query when speech is recognized
-    addSTTCommand({
-      indexes: ["*"], // Listen for any word
-      smart: true, // Enable smart mode to get the recognized text
-      action: (i, wildcard) => {
-        setQuery(wildcard);
-        // Automatically send voice input to the /api/ai route
-        handleSubmit(null, wildcard); // Pass wildcard as query
-      },
-    });
-
-    // Clean up Artyom when the component unmounts
-    return () => {
-      stopSTT();
-    };
-  }, []);
-
-  const toggleListening = () => {
-    if (isListening) {
-      stopSTT();
-      setIsListening(false);
-    } else {
-      startSTT();
-      setIsListening(true);
-    }
-  };
-
-  const stopSpeaking = () => {
-    // Assuming artyom.js has a way to stop current speech
-    // For now, we'll just set isSpeaking to false
-    // In a real implementation, you'd call artyom.shutUp() or similar
-    setIsSpeaking(false);
-    // Clear the query when speaking is stopped manually
-    setQuery("");
-  };
-
-  useEffect(() => {
-    // Add a command to stop TTS when the user says "stop"
-    addSTTCommand({
-      indexes: ["stop"],
-      smart: true,
-      action: () => {
-        stopSpeaking();
-      },
-    });
-  }, []);
-
-  const handleSubmit = async (e, voiceQuery = null) => {
-    if (e) e.preventDefault(); // Prevent default form submission if triggered by event
-
-    const currentQuery = voiceQuery || query;
-    if (!currentQuery.trim()) return;
-
-    console.log("AI Search Query:", currentQuery);
-    setIsSpeaking(true); // Set speaking state to true
-
+  async function fetchAIResponse(query) {
+    if (!query) return;
+    setLoadingAIResponse(true);
     try {
-      const response = await fetch("/api/ai", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userQuery: currentQuery }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      const response = await axios.post("/api/ai/tts", { query });
+      const audioBase64 = response.data.audioBase64;
+      if (audioBase64) {
+        const audio = new Audio(`data:audio/mpeg;base64,${audioBase64}`);
+        audio.play();
+        setCurrentAudio(audio);
+        audio.onended = () => {
+          setCurrentAudio(null);
+          setInputValue("");
+        };
       }
-
-      const data = await response.json();
-      const aiResponse = data.answer || "No answer received.";
-
-      // Speak the AI response
-      speakText(aiResponse);
-
-      setQuery(aiResponse); // Display AI response in the input field
-      setIsSpeaking(false); // Set speaking state to false after response is spoken
+      setAIResponse(`AI responded to: "${query}"`);
     } catch (error) {
-      console.error("Error sending query to AI API:", error);
-      speakText("Error processing your request. Please try again.");
-      setQuery(""); // Clear query on error as well
-      setIsSpeaking(false); // Set speaking state to false on error
+      console.error("Error fetching AIResponse", error);
+      setAIResponse("Sorry, I couldn't get a response from the AI.");
+    } finally {
+      setLoadingAIResponse(false);
+    }
+  }
+
+  useEffect(() => {
+    if (!isLoading && text) {
+      setInputValue(text);
+      fetchAIResponse(text);
+    }
+  }, [isLoading, text]);
+
+  const handleSend = () => {
+    fetchAIResponse(inputValue);
+    setInputValue(""); // Clear input after sending
+  };
+
+  const handleStop = () => {
+    stop(); // Stop speech recognition
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      setCurrentAudio(null);
+    }
+    setInputValue(""); // Clear input field
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSend();
     }
   };
-
-  const handleTextSubmit = (e) => {
-    e.preventDefault();
-    handleSubmit(e);
-  };
-
-  const showSendButton = query.length > 0 && !isListening && !isSpeaking;
 
   return (
     <div
       className={clsx(styles.aiSearchContainer, "transition-all duration-300")}
     >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSend();
+        }}
         className={clsx(
           styles.searchForm,
           "focus-within:ring-2 focus-within:ring-blue-500/60",
           "transition-all duration-300"
         )}
       >
-        <Search
+        <Search className={clsx(styles.searchIcon)} />
+
+        <Sparkles
           className={clsx(
-            styles.searchIcon,
-            focused && styles.searchIconFocused
+            styles.sparklesIcon,
+            "absolute right-12 top-1/2 -translate-y-1/2 text-blue-400"
           )}
         />
-        {focused && !isSpeaking && !isListening && (
-          <Sparkles
-            className={clsx(
-              styles.sparklesIcon,
-              "absolute right-12 top-1/2 -translate-y-1/2 text-blue-400"
-            )}
-          />
-        )}
+
         <input
           type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
           placeholder="Ask About Ajit..."
           className={clsx(
             styles.searchInput,
             "placeholder-neutral-500 sm:text-base"
           )}
-          readOnly={isSpeaking} // Make input un-editable when AI is speaking
+          value={loadingAIResponse ? "Loading AI Response..." : AIResponse ? AIResponse : (isLoading ? text : inputValue)}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            setAIResponse(""); // Clear AIResponse when user starts typing
+          }}
+          onKeyDown={handleKeyDown}
         />
-        {isSpeaking ? (
-          <button
-            type="button"
-            className={clsx(
-              styles.micButton,
-              styles.stopButton,
-              "hover:bg-red-600/20"
-            )}
-            onClick={stopSpeaking}
-          >
-            <StopCircle className={styles.micIcon} />
-          </button>
-        ) : showSendButton ? (
-          <button
-            type="submit"
-            className={clsx(
-              styles.micButton,
-              styles.sendButton,
-              "hover:bg-blue-600/20"
-            )}
-            onClick={handleTextSubmit}
-          >
-            <Send className={styles.micIcon} />
+        {isLoading ? (
+          <button onClick={handleStop}>
+            <StopCircle className="styles.stopCircle" />
           </button>
         ) : (
-          <button
-            type="button"
-            className={clsx(
-              styles.micButton,
-              isListening ? styles.micButtonActive : "",
-              "hover:bg-blue-600/20"
-            )}
-            onClick={toggleListening}
-          >
-            <Mic className={styles.micIcon} />
-          </button>
+          <>
+            <button
+              type="button"
+              className={clsx(styles.micButton, "hover:bg-blue-600/20")}
+              onClick={start}
+            >
+              <Mic className={styles.micIcon} />
+            </button>
+            <button
+              type="submit"
+              className={clsx(styles.sendButton, "hover:bg-blue-600/20")}
+            >
+              <Send className={styles.sendIcon} />
+            </button>
+          </>
         )}
       </form>
     </div>

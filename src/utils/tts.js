@@ -1,18 +1,40 @@
-import Artyom from "artyom.js";
-
-const artyom = new Artyom();
+let currentAudio = null;
 
 export const initTTS = () => {
-  artyom.initialize({
-    lang: "en-GB", // Great Britain english
-    continuous: false, // Do not stop artyom when talking
-    listen: false, // Start listening when the page is loaded
-    debug: true, // Show debug messages in the console
-    speed: 0.9, // Talk a little bit slower
-    mode: "silent", // This mode doesn't listen to commands
-  });
+  console.log("TTS initialized (using API)");
 };
 
-export const speakText = (text) => {
-  artyom.say(text);
+export const speakText = async (text) => {
+  try {
+    // Stop any currently playing audio
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+    }
+
+    const response = await fetch('/api/ai/tts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text }),
+    });
+    const data = await response.json();
+    if (data.audioBase64) {
+      currentAudio = new Audio('data:audio/mp3;base64,' + data.audioBase64);
+      currentAudio.play();
+    } else if (data.error) {
+      console.error('TTS API error:', data.error);
+    }
+  } catch (error) {
+    console.error('Error sending text to TTS API:', error);
+  }
+};
+
+export const stopTTS = () => {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+  }
+  console.log("TTS stop requested (API-based)");
 };
