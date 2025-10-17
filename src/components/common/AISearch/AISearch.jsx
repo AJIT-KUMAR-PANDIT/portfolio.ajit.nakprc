@@ -31,7 +31,7 @@ export default function AISearch() {
           setInputValue("");
         };
       }
-      setAIResponse(`AI responded to: "${query}"`);
+      setAIResponse(query);
     } catch (error) {
       console.error("Error fetching AIResponse", error);
       setAIResponse("Sorry, I couldn't get a response from the AI.");
@@ -100,7 +100,15 @@ export default function AISearch() {
             styles.searchInput,
             "placeholder-neutral-500 sm:text-base"
           )}
-          value={loadingAIResponse ? "Loading AI Response..." : AIResponse ? AIResponse : (isLoading ? text : inputValue)}
+          value={
+            loadingAIResponse
+              ? "Loading AI Response..."
+              : AIResponse
+              ? AIResponse
+              : isLoading
+              ? text
+              : inputValue
+          }
           onChange={(e) => {
             setInputValue(e.target.value);
             setAIResponse(""); // Clear AIResponse when user starts typing
