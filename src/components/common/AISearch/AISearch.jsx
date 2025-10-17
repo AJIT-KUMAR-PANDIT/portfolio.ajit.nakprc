@@ -4,17 +4,72 @@ import { Search, Sparkles, Mic, StopCircle, Send } from "lucide-react";
 import clsx from "clsx";
 import styles from "./AISearch.module.scss";
 import { useSpeechRecognition } from "@lobehub/tts/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 export default function AISearch() {
-  const { text, start, stop, isLoading } = useSpeechRecognition("en-US", {
-    autoStop: true,
-  });
   const [inputValue, setInputValue] = useState("");
   const [AIResponse, setAIResponse] = useState("");
   const [loadingAIResponse, setLoadingAIResponse] = useState(false);
   const [currentAudio, setCurrentAudio] = useState(null);
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
+
+  useEffect(() => {
+    if (!('webkitSpeechRecognition' in window)) {
+      console.error("Web Speech API is not supported by this browser.");
+      return;
+    }
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    recognition.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join('');
+      setInputValue(transcript);
+      fetchAIResponse(transcript);
+      setIsListening(false);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error", event.error);
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognitionRef.current = recognition;
+
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
+  }, []);
+
+  const startListening = () => {
+    if (recognitionRef.current) {
+      setInputValue("");
+      setAIResponse("");
+      recognitionRef.current.start();
+      setIsListening(true);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+  };
 
   async function fetchAIResponse(query) {
     if (!query) return;
@@ -41,26 +96,9 @@ export default function AISearch() {
     }
   }
 
-  useEffect(() => {
-    if (!isLoading && text) {
-      setInputValue(text);
-      fetchAIResponse(text);
-    }
-  }, [isLoading, text]);
-
   const handleSend = () => {
     fetchAIResponse(inputValue);
     setInputValue(""); // Clear input after sending
-  };
-
-  const handleStop = () => {
-    stop(); // Stop speech recognition
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
-      setCurrentAudio(null);
-    }
-    setInputValue(""); // Clear input field
   };
 
   const handleKeyDown = (e) => {
@@ -107,8 +145,8 @@ export default function AISearch() {
               ? "Loading AI Response..."
               : AIResponse
               ? AIResponse
-              : isLoading
-              ? text
+              : isListening
+              ? inputValue
               : inputValue
           }
           onChange={(e) => {
@@ -117,8 +155,8 @@ export default function AISearch() {
           }}
           onKeyDown={handleKeyDown}
         />
-        {isLoading ? (
-          <button onClick={handleStop} className={clsx(styles.stopButton)}>
+        {isListening ? (
+          <button onClick={stopListening} className={clsx(styles.stopButton)}>
             <StopCircle className={clsx(styles.stopCircle)} />
           </button>
         ) : (
@@ -126,7 +164,7 @@ export default function AISearch() {
             <button
               type="button"
               className={clsx(styles.micButton, "hover:bg-blue-600/20")}
-              onClick={start}
+              onClick={startListening}
             >
               <Mic className={styles.micIcon} />
             </button>
