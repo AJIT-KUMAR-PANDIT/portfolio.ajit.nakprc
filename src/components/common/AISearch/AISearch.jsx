@@ -29,6 +29,7 @@ export default function AISearch() {
         audio.onended = () => {
           setCurrentAudio(null);
           setInputValue("");
+          setAIResponse("");
         };
       }
       setAIResponse(query);
@@ -79,10 +80,11 @@ export default function AISearch() {
           handleSend();
         }}
         className={clsx(
-          styles.searchForm,
-          "focus-within:ring-2 focus-within:ring-blue-500/60",
-          "transition-all duration-300"
-        )}
+            styles.searchForm,
+            "focus-within:ring-2 focus-within:ring-blue-500/60",
+            "transition-all duration-300",
+            (AIResponse || currentAudio) ? styles.AIactive : ""
+          )}
       >
         <Search className={clsx(styles.searchIcon)} />
 
