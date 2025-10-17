@@ -62,6 +62,7 @@
   color: #e5e5e5;
   font-size: 0.875rem;
   line-height: 1.25rem;
+  min-height: 2.5rem; /* Adjust this value as needed */
 }
 
 .submitButton {
@@ -81,6 +82,16 @@
 }
 
 .micIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #a3a3a3;
+}
+
+.stopButton{
+  padding: 0.5rem;
+  border-radius: 9999px;
+}
+.stopCircle {
   width: 1.25rem;
   height: 1.25rem;
   color: #a3a3a3;

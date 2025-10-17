@@ -80,11 +80,11 @@ export default function AISearch() {
           handleSend();
         }}
         className={clsx(
-            styles.searchForm,
-            "focus-within:ring-2 focus-within:ring-blue-500/60",
-            "transition-all duration-300",
-            (AIResponse || currentAudio) ? styles.AIactive : ""
-          )}
+          styles.searchForm,
+          "focus-within:ring-2 focus-within:ring-blue-500/60",
+          "transition-all duration-300",
+          AIResponse || currentAudio ? styles.AIactive : ""
+        )}
       >
         <Search className={clsx(styles.searchIcon)} />
 
@@ -118,8 +118,8 @@ export default function AISearch() {
           onKeyDown={handleKeyDown}
         />
         {isLoading ? (
-          <button onClick={handleStop}>
-            <StopCircle className="styles.stopCircle" />
+          <button onClick={handleStop} className={clsx(styles.stopButton)}>
+            <StopCircle className={clsx(styles.stopCircle)} />
           </button>
         ) : (
           <>
