@@ -3,7 +3,6 @@
 import { Search, Sparkles, Mic, StopCircle, Send } from "lucide-react";
 import clsx from "clsx";
 import styles from "./AISearch.module.scss";
-import { useSpeechRecognition } from "@lobehub/tts/react";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
@@ -16,22 +15,23 @@ export default function AISearch() {
   const recognitionRef = useRef(null);
 
   useEffect(() => {
-    if (!('webkitSpeechRecognition' in window)) {
+    if (!("webkitSpeechRecognition" in window)) {
       console.error("Web Speech API is not supported by this browser.");
       return;
     }
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.lang = 'en-US';
+    recognition.lang = "en-US";
 
     recognition.onresult = (event) => {
       const transcript = Array.from(event.results)
         .map((result) => result[0])
         .map((result) => result.transcript)
-        .join('');
+        .join("");
       setInputValue(transcript);
       fetchAIResponse(transcript);
       setIsListening(false);
@@ -142,7 +142,7 @@ export default function AISearch() {
           )}
           value={
             loadingAIResponse
-              ? "Loading AI Response..."
+              ? "Thinking..."
               : AIResponse
               ? AIResponse
               : isListening

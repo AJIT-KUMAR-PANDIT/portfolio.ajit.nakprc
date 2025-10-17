@@ -24,18 +24,20 @@ export async function POST(request) {
     const { query } = await request.json();
 
     // Fetch knowledge base within the request
-    const knowledgeBaseResponse = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/knowledge`);
+    const knowledgeBaseResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/knowledge`
+    );
     const knowledgeBase = JSON.stringify(knowledgeBaseResponse.data);
 
     const aiResponse = await run("@cf/meta/llama-3-8b-instruct", {
       messages: [
         {
           role: "system",
-          content: `This is knowledgebase of AJIT KUMAR PANDIT AUTHENTIC USE THIS KNOWLWDGE BASE TO ANSWER ALL QUESTIONS RELATED TO AJIT , AND BE CONCISE ${knowledgeBase}`,
+          content: `This is knowledgebase of AJIT KUMAR PANDIT AUTHENTIC USE THIS KNOWLWDGE BASE TO ANSWER ALL QUESTIONS RELATED TO AJIT , AND BE CONCISE "ajit.nakprc.com" having all social connection of ajit kumar pandit his email id is" ajit@nakprc.com" ${knowledgeBase}`,
         },
         {
           role: "user",
-          content: `ANSWER QUESTIOS REALATED TO AJIT KUMAR PANDITE IN CONCISE ${query}`,
+          content: query,
         },
       ],
     });
