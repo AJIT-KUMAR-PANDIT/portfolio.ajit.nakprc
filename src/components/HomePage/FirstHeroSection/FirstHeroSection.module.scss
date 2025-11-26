@@ -6,8 +6,9 @@
   background-size: 121px;
 
   text-align: center;
-}
+  
+  -webkit-text-stroke: 0.5px rgb(71, 7, 160) ;
+  paint-order: stroke markers ;
 
-// .text-stroke {
-//   -webkit-text-stroke: 0.01px black;
-// }
+  font-weight: 900;
+}
