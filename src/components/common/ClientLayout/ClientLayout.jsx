@@ -6,6 +6,7 @@ import Dock from "@/components/common/Dock/Dock";
 import { Nav } from "@/components/common/Nav/Nav";
 import AIModal from "@/components/common/AIModal/AIModal";
 import AISearch from "@/components/common/AISearch/AISearch";
+import BackgroundAvatar from "../BackgroundAvatar/BackgroundAvatar";
 
 export default function ClientLayout({ children }) {
   const [loading, setLoading] = useState(true);
@@ -29,6 +30,7 @@ export default function ClientLayout({ children }) {
         <Loader />
       ) : (
         <>
+          <BackgroundAvatar />
           <Nav />
           {children}
           <Dock />

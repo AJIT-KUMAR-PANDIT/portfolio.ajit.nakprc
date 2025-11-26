@@ -32,7 +32,10 @@ const Typewriter = ({ texts, typingSpeed = 150, pauseDuration = 1000 }) => {
     };
 
     // Only set timeout if there's more to type or it's not the last text
-    const shouldContinueTyping = !(textIndex === texts.length - 1 && charIndex === texts[textIndex].text.length);
+    const shouldContinueTyping = !(
+      textIndex === texts.length - 1 &&
+      charIndex === texts[textIndex].text.length
+    );
 
     let timeout;
     if (shouldContinueTyping) {
@@ -46,7 +49,9 @@ const Typewriter = ({ texts, typingSpeed = 150, pauseDuration = 1000 }) => {
   const currentSize = currentItem ? currentItem.size : "";
 
   return (
-    <span className={`pr-[0px] mr-[0px] border-r-[9px] border-[#1e66e1] ${currentSize}`}>
+    <span
+      className={`pr-[0px] mr-[0px] border-r-[9px] border-[#1e66e1]  text-center !important ${currentSize}`}
+    >
       <span dangerouslySetInnerHTML={{ __html: displayedText }} />
     </span>
   );

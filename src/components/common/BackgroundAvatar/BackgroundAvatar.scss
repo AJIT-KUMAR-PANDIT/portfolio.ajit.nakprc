@@ -1,0 +1,14 @@
+.background-avatar {
+  position: fixed;
+  height: 300vh; // This creates scroll space for the animation
+  z-index: -100;
+
+  &__canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
+}

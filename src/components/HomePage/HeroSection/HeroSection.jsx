@@ -6,6 +6,7 @@ import clsx from "clsx";
 import SocialMediaSection from "@/components/common/SocialMediaSection/SocialMediaSection";
 import axios from "axios";
 import { FirstHeroSection } from "../FirstHeroSection/FirstHeroSection";
+import Image from "next/image";
 
 const HeroSection = () => {
   const [heroData, setHeroData] = useState(null);
@@ -33,10 +34,17 @@ const HeroSection = () => {
         <SocialMediaSection />
       </div>
       <div className={clsx(styles["hero-right"])}>
-        <video autoPlay loop muted className={clsx(styles["background-video"])}>
+        {/* <video autoPlay loop muted className={clsx(styles["background-video"])}>
           <source src="/assets/loder-video.webm" type="video/webm" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
+        <Image
+          src="/images/ajit.png"
+          alt="AJIT KUMAR PANDIT"
+          width={100}
+          height={100}
+          className={clsx(styles["image_my"])}
+        />
       </div>
     </section>
   );
