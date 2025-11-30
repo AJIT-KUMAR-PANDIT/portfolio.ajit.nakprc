@@ -10,8 +10,20 @@ const AboutSection = React.lazy(() =>
 const SkillsSection = React.lazy(() =>
   import("@/components/HomePage/SkillsSection/SkillsSection")
 );
+const ServicesSection = React.lazy(() =>
+  import("@/components/HomePage/ServicesSection/ServicesSection")
+);
+const ExperienceSection = React.lazy(() =>
+  import("@/components/HomePage/ExperienceSection/ExperienceSection")
+);
 const ProjectArena = React.lazy(() =>
   import("@/components/HomePage/ProjectArena/ProjectArena")
+);
+const GallerySection = React.lazy(() =>
+  import("@/components/HomePage/GallerySection/GallerySection")
+);
+const BlogSection = React.lazy(() =>
+  import("@/components/HomePage/BlogSection/BlogSection")
 );
 const ContactUsSection = React.lazy(() =>
   import("@/components/HomePage/ContactUsSection/ContactUsSection")
@@ -36,7 +48,11 @@ export default function Home() {
           <HeroSection />
           <AboutSection />
           <SkillsSection />
+          {/* <ServicesSection /> */}
+          {/* <ExperienceSection /> */}
           <ProjectArena />
+          {/* <GallerySection /> */}
+          {/* <BlogSection /> */}
           <ContactUsSection />
           <Footer />
         </Suspense>

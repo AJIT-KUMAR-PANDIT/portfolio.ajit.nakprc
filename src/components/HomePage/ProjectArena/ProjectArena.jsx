@@ -11,7 +11,7 @@ export default function ProjectArena() {
   const [activeVideo, setActiveVideo] = useState(null);
 
   return (
-    <section className={clsx(styles["project-arena"])}>
+    <section id="projects" className={clsx(styles["project-arena"])}>
       <h1 className={clsx(styles["title"])}>Project Arena</h1>
       <div className={clsx(styles["grid-container"])}>
         {projects.map((project, idx) => (
@@ -48,15 +48,14 @@ export default function ProjectArena() {
             {/* Info */}
             <div className={clsx(styles["project-info"])}>
               <h2 className={clsx(styles["project-title"])}>{project.title}</h2>
-              <p className={clsx(styles["project-description"])}>{project.description}</p>
+              <p className={clsx(styles["project-description"])}>
+                {project.description}
+              </p>
 
               {/* Tags */}
               <div className={clsx(styles["tags-container"])}>
                 {project.tags?.map((tag, tIdx) => (
-                  <span
-                    key={tIdx}
-                    className={clsx(styles["tag"])}
-                  >
+                  <span key={tIdx} className={clsx(styles["tag"])}>
                     {tag}
                   </span>
                 ))}

@@ -1,0 +1,116 @@
+@reference "tailwindcss";
+
+.gallerySection {
+  @apply py-16 px-4 relative overflow-hidden;
+
+  .titleMain {
+    @apply text-4xl md:text-5xl font-extrabold mb-4 text-center tracking-tight;
+  }
+
+  .titleSub {
+    @apply text-[7vmin] leading-tight mb-12 text-center;
+
+    .highlight {
+      @apply font-bold text-[9vmin];
+      background-image: url("/assets/aurabrain.gif");
+      background-size: 81px;
+      background-position: center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(241, 9, 9, 0.5);
+    }
+  }
+
+  .contentWrapper {
+    @apply relative z-10 max-w-6xl mx-auto px-4;
+  }
+
+  .tabs {
+    @apply flex justify-center gap-4 mb-8;
+
+    .tab {
+      @apply flex items-center gap-2 px-6 py-3 rounded-full;
+      @apply border-2 border-gray-300 dark:border-gray-700;
+      @apply transition-all duration-300 font-semibold;
+
+      &:hover {
+        @apply border-blue-500 dark:border-blue-400;
+      }
+
+      &.active {
+        @apply bg-blue-500 text-white border-blue-500;
+      }
+    }
+  }
+
+  .grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .gridItem {
+    @apply rounded-xl overflow-hidden shadow-lg cursor-pointer;
+    @apply border border-gray-200 dark:border-gray-700;
+    @apply transition-all duration-300 ease-in-out;
+
+    &:hover {
+      @apply transform -translate-y-1 shadow-xl;
+    }
+
+    .imagePlaceholder,
+    .videoPlaceholder {
+      @apply aspect-video flex flex-col items-center justify-center gap-3;
+      @apply bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700;
+      @apply text-gray-600 dark:text-gray-400 relative;
+
+      span {
+        @apply font-semibold text-center px-4;
+      }
+    }
+
+    .videoPlaceholder {
+      .duration {
+        @apply absolute bottom-3 right-3 px-2 py-1 rounded;
+        @apply bg-black/70 text-white text-sm font-bold;
+      }
+    }
+
+    .videoInfo {
+      @apply p-4;
+
+      h4 {
+        @apply font-semibold text-base;
+      }
+    }
+  }
+
+  .lightbox {
+    @apply fixed inset-0 bg-black/90 z-50;
+    @apply flex items-center justify-center p-4;
+
+    .closeBtn {
+      @apply absolute top-4 right-4 w-12 h-12 rounded-full;
+      @apply bg-white dark:bg-gray-800 text-gray-900 dark:text-white;
+      @apply flex items-center justify-center;
+      @apply transition-all duration-300;
+
+      &:hover {
+        @apply scale-110;
+      }
+    }
+
+    .lightboxContent {
+      @apply max-w-4xl w-full;
+
+      .lightboxImage {
+        @apply aspect-video rounded-xl mb-4;
+        @apply bg-gradient-to-br from-gray-700 to-gray-800;
+        @apply flex items-center justify-center text-white;
+      }
+
+      h3 {
+        @apply text-2xl font-bold text-white text-center;
+      }
+    }
+  }
+}

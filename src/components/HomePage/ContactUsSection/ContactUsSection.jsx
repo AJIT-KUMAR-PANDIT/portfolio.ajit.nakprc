@@ -83,7 +83,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className={clsx(styles.contactSection)}>
+    <section id="contact" className={clsx(styles.contactSection)}>
       <div className={clsx(styles.contentWrapper)}>
         <div className={clsx(styles.textCenter)}>
           <h2 className={clsx(styles.connectTitle)}>Let's Connect</h2>

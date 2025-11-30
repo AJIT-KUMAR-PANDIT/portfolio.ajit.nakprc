@@ -24,7 +24,7 @@ export default function AboutSection() {
   }
 
   return (
-    <section className={clsx(styles["about-section"])}>
+    <section id="about" className={clsx(styles["about-section"])}>
       <div className={clsx(styles["title-main"])}>ABOUT ME</div>
       <div className={clsx(styles["title-sub"])}>
         My Experience And Expertise With Design Tools Used

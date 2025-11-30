@@ -24,7 +24,7 @@ export default function SkillsSection() {
   }, []);
 
   return (
-    <section className={clsx(styles.skillsSection)}>
+    <section id="skills" className={clsx(styles.skillsSection)}>
       {/* Sticky Background Video */}
       <div className={clsx(styles.videoContainer)}>
         <video

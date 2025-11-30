@@ -1,0 +1,66 @@
+@reference "tailwindcss";
+
+.servicesSection {
+  @apply py-16 px-4 relative overflow-hidden;
+
+  .titleMain {
+    @apply text-4xl md:text-5xl font-extrabold mb-4 text-center tracking-tight;
+  }
+
+  .titleSub {
+    @apply text-[7vmin] leading-tight mb-12 text-center;
+
+    .highlight {
+      @apply font-bold text-[9vmin];
+      background-image: url("/assets/aurabrain.gif");
+      background-size: 81px;
+      background-position: center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(241, 9, 9, 0.5);
+    }
+  }
+
+  .contentWrapper {
+    @apply relative z-10 max-w-7xl mx-auto px-4;
+  }
+
+  .servicesGrid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+  }
+
+  .serviceCard {
+    @apply p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out;
+
+    &:hover {
+      @apply transform -translate-y-1 scale-105 shadow-xl;
+    }
+
+    .serviceIcon {
+      @apply w-16 h-16 flex items-center justify-center rounded-xl mb-4;
+      @apply bg-gradient-to-br from-blue-500 to-purple-600 text-white;
+    }
+
+    h3 {
+      @apply text-xl md:text-2xl font-bold mb-3;
+    }
+
+    .description {
+      @apply text-base leading-relaxed mb-4 opacity-80;
+    }
+
+    .featuresList {
+      @apply list-none space-y-2;
+
+      li {
+        @apply flex items-start gap-2 text-sm md:text-base;
+
+        .checkmark {
+          @apply inline-flex items-center justify-center w-5 h-5 rounded-full;
+          @apply bg-green-500 text-white text-xs font-bold flex-shrink-0 mt-0.5;
+        }
+      }
+    }
+  }
+}

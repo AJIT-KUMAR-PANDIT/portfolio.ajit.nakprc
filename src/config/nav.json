@@ -9,63 +9,49 @@
         },
         {
             "name": "About",
-            "link": "/about",
+            "link": "#about",
             "icon": "Info",
             "color": "#eab308"
         },
         {
             "name": "Skills",
-            "link": "/skills",
+            "link": "#skills",
             "icon": "Award",
             "color": "#f97316"
         },
         {
             "name": "Projects",
-            "link": "/projects",
+            "link": "#projects",
             "icon": "Folder",
             "color": "#60a5fa"
         },
         {
             "name": "Services",
-            "link": "/services",
+            "link": "#services",
             "icon": "Briefcase",
             "color": "#a855f7"
         },
         {
             "name": "Experience",
-            "link": "/experience",
+            "link": "#experience",
             "icon": "Briefcase",
             "color": "#f43f5e"
         },
         {
             "name": "Gallery",
-            "link": "/gallery",
+            "link": "#gallery",
             "icon": "Image",
-            "color": "#06b6d4",
-            "subItems": [
-                {
-                    "name": "Image Gallery",
-                    "link": "/gallery/images",
-                    "icon": "Image",
-                    "color": "#06b6d4"
-                },
-                {
-                    "name": "Video Gallery",
-                    "link": "/gallery/videos",
-                    "icon": "Video",
-                    "color": "#06b6d4"
-                }
-            ]
+            "color": "#06b6d4"
         },
         {
             "name": "Contact",
-            "link": "/contact",
+            "link": "#contact",
             "icon": "Mail",
             "color": "#4ade80"
         },
         {
             "name": "Blog",
-            "link": "/blog",
+            "link": "#blog",
             "icon": "Book",
             "color": "#eab308"
         }
