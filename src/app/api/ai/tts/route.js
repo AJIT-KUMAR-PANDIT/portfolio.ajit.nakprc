@@ -53,7 +53,7 @@ export async function POST(request) {
     });
     const audioBuffer = Buffer.from(await audio.arrayBuffer());
     const audioBase64 = audioBuffer.toString("base64");
-    return NextResponse.json({ audioBase64 });
+    return NextResponse.json({ audioBase64, textResponse: aiTextResponse });
   } catch (error) {
     console.error("TTS API error:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });

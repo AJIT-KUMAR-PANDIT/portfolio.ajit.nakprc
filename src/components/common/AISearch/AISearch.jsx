@@ -71,12 +71,28 @@ export default function AISearch() {
     }
   };
 
+  const stopAudio = () => {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      setCurrentAudio(null);
+    }
+    setInputValue("");
+    setAIResponse("");
+  };
+
   async function fetchAIResponse(query) {
     if (!query) return;
     setLoadingAIResponse(true);
     try {
       const response = await axios.post("/api/ai/tts", { query });
-      const audioBase64 = response.data.audioBase64;
+      const { audioBase64, textResponse } = response.data;
+
+      // Set the AI's text response
+      if (textResponse) {
+        setAIResponse(textResponse);
+      }
+
       if (audioBase64) {
         const audio = new Audio(`data:audio/mpeg;base64,${audioBase64}`);
         audio.play();
@@ -87,7 +103,6 @@ export default function AISearch() {
           setAIResponse("");
         };
       }
-      setAIResponse(query);
     } catch (error) {
       console.error("Error fetching AIResponse", error);
       setAIResponse("Sorry, I couldn't get a response from the AI.");
@@ -157,6 +172,14 @@ export default function AISearch() {
         />
         {isListening ? (
           <button onClick={stopListening} className={clsx(styles.stopButton)}>
+            <StopCircle className={clsx(styles.stopCircle)} />
+          </button>
+        ) : currentAudio ? (
+          <button
+            type="button"
+            onClick={stopAudio}
+            className={clsx(styles.stopButton)}
+          >
             <StopCircle className={clsx(styles.stopCircle)} />
           </button>
         ) : (
