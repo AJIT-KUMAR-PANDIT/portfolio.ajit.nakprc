@@ -57,3 +57,29 @@ html.dark {
 .btn-secondary {
   @apply bg-transparent text-[#0062ff] px-6 py-2 rounded-md border-2 border-[#0062ff];
 }
+
+
+
+// ? text glow start
+
+
+.text-glow {
+  font-size: 3.5rem;
+  text-align: center;
+  /* Applying the animation */
+  animation: text-glow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes text-glow {
+  from {
+    /* Subtle initial glow */
+    text-shadow: 0 0 1px , 0 0 2px , 0 0 5px #7940af8b;
+  }
+  // to {
+  //   /* Intense expanded glow */
+  //   text-shadow: 0 0 2px , 0 0 4px #7940AF, 0 0 5px #7940AF, 0 0 8px #7940AF;
+  // }
+}
+
+
+// text glow end

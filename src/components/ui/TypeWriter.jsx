@@ -50,7 +50,7 @@ const Typewriter = ({ texts, typingSpeed = 150, pauseDuration = 1000 }) => {
 
   return (
     <span
-      className={`pr-[0px] mr-[0px] border-r-[9px] border-[#1e66e1]  text-center !important ${currentSize}`}
+      className={`pr-[0px] mr-[0px] border-r-[9px] border-[#1e66e1]  text-center !important ${currentSize} text-glow`}
     >
       <span dangerouslySetInnerHTML={{ __html: displayedText }} />
     </span>
