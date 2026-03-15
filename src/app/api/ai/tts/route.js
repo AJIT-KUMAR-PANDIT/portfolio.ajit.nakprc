@@ -1,5 +1,5 @@
 import * as googleTTS from "google-tts-api";
-import axios from "axios";
+import { Buffer } from "node:buffer";
 import { NextResponse } from "next/server";
 export const runtime = "edge";
 
@@ -24,10 +24,12 @@ export async function POST(request) {
 
     // Fetch knowledge base within the request
     const origin = new URL(request.url).origin;
-    const knowledgeBaseResponse = await axios.get(
-      `${origin}/api/knowledge`
-    );
-    const knowledgeBase = JSON.stringify(knowledgeBaseResponse.data);
+    const knowledgeBaseResponse = await fetch(`${origin}/api/knowledge`);
+    if (!knowledgeBaseResponse.ok) {
+        throw new Error(`Failed to fetch knowledge base: ${knowledgeBaseResponse.statusText}`);
+    }
+    const knowledgeBaseData = await knowledgeBaseResponse.json();
+    const knowledgeBase = JSON.stringify(knowledgeBaseData);
 
     const aiResponse = await run("@cf/meta/llama-3-8b-instruct", {
       messages: [
@@ -44,25 +46,35 @@ export async function POST(request) {
 
     const aiTextResponse = aiResponse.result.response; // Assuming the AI response structure
 
-    // Replace @lobehub/tts with google-tts-api
-    const ttsResults = await googleTTS.getAllAudioBase64(aiTextResponse, {
-      lang: "en",
-      slow: false,
-      host: "https://translate.google.com",
-      splitPunct: ",.?!",
+    // Limit text length to avoid 400 Bad Request from simple TTS endpoints (200 char max usually)
+    const truncatedText = aiTextResponse.substring(0, 200);
+
+    // Fetch TTS audio directly using native fetch a stable, tokenless endpoint
+    const url = `https://translate.googleapis.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(
+      truncatedText
+    )}&tl=en&client=tw-ob`;
+    const ttsResponse = await fetch(url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+      },
     });
 
-    // MP3 files can be concatenated by appending their buffers
-    const buffers = ttsResults.map(result => Buffer.from(result.base64, 'base64'));
-    const audioBuffer = Buffer.concat(buffers);
-    const audioBase64 = audioBuffer.toString('base64');
+    if (!ttsResponse.ok) {
+      const errText = await ttsResponse.text().catch(() => "");
+      throw new Error(`TTS Fetch Failed: ${ttsResponse.status} ${ttsResponse.statusText} - ${errText}`);
+    }
+
+    const arrayBuffer = await ttsResponse.arrayBuffer();
+    const audioBuffer = Buffer.from(arrayBuffer);
+    const audioBase64 = audioBuffer.toString("base64");
 
     return NextResponse.json({ audioBase64, textResponse: aiTextResponse });
   } catch (error) {
-    console.error("TTS API error:", error.response?.data || error.message);
+    console.error("TTS API error:", error.message);
     return NextResponse.json(
-      { error: error.message, details: error.response?.data },
-      { status: error.response?.status || 500 }
+      { error: error.message },
+      { status: 500 }
     );
   }
 }

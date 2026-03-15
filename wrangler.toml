@@ -1,7 +1,8 @@
 name = "ajitkumarpandit"
 compatibility_date = "2025-10-15"
 
-type = "javascript" 
+type = "javascript"
+compatibility_flags = ["nodejs_compat"] 
 
 [build]
 command = "npm install && npm run build"
