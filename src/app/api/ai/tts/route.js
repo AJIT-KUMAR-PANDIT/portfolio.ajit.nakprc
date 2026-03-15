@@ -1,6 +1,7 @@
 import * as googleTTS from "google-tts-api";
 import axios from "axios";
 import { NextResponse } from "next/server";
+export const runtime = "edge";
 
 async function run(model, input) {
   const response = await fetch(
