@@ -118,7 +118,9 @@ export default function ContactSection() {
                   <div>
                     <p className={clsx(styles.contactInfoLabel)}>Phone</p>
                     <p className={clsx(styles.contactInfoValue)}>
-                      {contactInfo.phone}
+                      <a href="tel:+916200281082" style={{ color: "inherit", textDecoration: "none" }}>
+                        {contactInfo.phone}
+                      </a>
                     </p>
                   </div>
                 </div>

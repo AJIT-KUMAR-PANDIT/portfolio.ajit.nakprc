@@ -51,7 +51,7 @@
         },
         {
             "name": "Blog",
-            "link": "#blog",
+            "link": "/blog",
             "icon": "Book",
             "color": "#eab308"
         }

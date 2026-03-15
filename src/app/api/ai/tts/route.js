@@ -1,8 +1,6 @@
-import { EdgeSpeechTTS } from "@lobehub/tts";
+import * as googleTTS from "google-tts-api";
 import axios from "axios";
 import { NextResponse } from "next/server";
-
-export const runtime = "edge";
 
 async function run(model, input) {
   const response = await fetch(
@@ -24,8 +22,9 @@ export async function POST(request) {
     const { query } = await request.json();
 
     // Fetch knowledge base within the request
+    const origin = new URL(request.url).origin;
     const knowledgeBaseResponse = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/knowledge`
+      `${origin}/api/knowledge`
     );
     const knowledgeBase = JSON.stringify(knowledgeBaseResponse.data);
 
@@ -44,18 +43,25 @@ export async function POST(request) {
 
     const aiTextResponse = aiResponse.result.response; // Assuming the AI response structure
 
-    const tts = new EdgeSpeechTTS();
-    const audio = await tts.create({
-      input: aiTextResponse,
-      options: {
-        voice: "en-US-GuyNeural",
-      },
+    // Replace @lobehub/tts with google-tts-api
+    const ttsResults = await googleTTS.getAllAudioBase64(aiTextResponse, {
+      lang: "en",
+      slow: false,
+      host: "https://translate.google.com",
+      splitPunct: ",.?!",
     });
-    const audioBuffer = Buffer.from(await audio.arrayBuffer());
-    const audioBase64 = audioBuffer.toString("base64");
+
+    // MP3 files can be concatenated by appending their buffers
+    const buffers = ttsResults.map(result => Buffer.from(result.base64, 'base64'));
+    const audioBuffer = Buffer.concat(buffers);
+    const audioBase64 = audioBuffer.toString('base64');
+
     return NextResponse.json({ audioBase64, textResponse: aiTextResponse });
   } catch (error) {
-    console.error("TTS API error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("TTS API error:", error.response?.data || error.message);
+    return NextResponse.json(
+      { error: error.message, details: error.response?.data },
+      { status: error.response?.status || 500 }
+    );
   }
 }

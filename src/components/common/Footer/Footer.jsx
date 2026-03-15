@@ -73,7 +73,15 @@ export const Footer = () => {
               ajit@nakprc.com
             </a>
           </p>
-          <p className={clsx(styles["contact-phone"])}>Phone:</p>
+          <p className={clsx(styles["contact-phone"])}>
+            Phone:{" "}
+            <a
+              href="tel:+916200281082"
+              className={clsx(styles["footer-link"])}
+            >
+              +91 6200281082
+            </a>
+          </p>
           <div className={clsx(styles["social-icons"])}>
             <a href="#" className={clsx(styles["social-icon"])}>
               <FaGithub />
