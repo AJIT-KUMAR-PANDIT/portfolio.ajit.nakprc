@@ -330,14 +330,15 @@ export default function BackgroundSnake() {
       ctx.shadowBlur = 15;
       ctx.fillStyle = COLORS.snakeHead; 
       // we only want strong shadow on the head to keep it performant
-      ctx.fillRect(snake[0].x * CELL, snake[0].y * CELL, CELL, CELL);
+      ctx.fillRect(snake[0].x * CELL - 0.5, snake[0].y * CELL - 0.5, CELL + 1, CELL + 1);
       ctx.restore();
 
       ctx.save();
       // Create clip path for the whole snake
+      // Overlap by 0.5px to fix anti-aliasing seams at pixel interaction points
       ctx.beginPath();
       for (let i = 0; i < snake.length; i++) {
-        ctx.rect(snake[i].x * CELL, snake[i].y * CELL, CELL, CELL);
+        ctx.rect(snake[i].x * CELL - 0.5, snake[i].y * CELL - 0.5, CELL + 1, CELL + 1);
       }
       ctx.clip(); 
 
@@ -375,7 +376,7 @@ export default function BackgroundSnake() {
         ctx.fillStyle = i === 0 
             ? "rgba(0, 255, 136, 0.4)" 
             : `rgba(0, ${Math.round(255 * (1 - t * 0.6))}, 102, 0.5)`;
-        ctx.fillRect(s.x * CELL, s.y * CELL, CELL, CELL);
+        ctx.fillRect(s.x * CELL - 0.5, s.y * CELL - 0.5, CELL + 1, CELL + 1);
       }
       
       ctx.restore(); // Remove clipping
