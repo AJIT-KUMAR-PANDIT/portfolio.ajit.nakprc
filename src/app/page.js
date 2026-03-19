@@ -1,4 +1,5 @@
 import BackgroundAvatar from "@/components/common/BackgroundAvatar/BackgroundAvatar";
+import BackgroundSnake from "@/components/common/BackgroundSnake/BackgroundSnake";
 import React, { Suspense } from "react";
 
 const HeroSection = React.lazy(() =>
@@ -42,6 +43,7 @@ const FirstHeroSection = React.lazy(() =>
 export default function Home() {
   return (
     <>
+      <BackgroundSnake />
       <BackgroundAvatar />
       <main>
         <Suspense fallback={<div>Loading...</div>}>
