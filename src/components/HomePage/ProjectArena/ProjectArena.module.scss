@@ -3,12 +3,7 @@
 
 .project-arena {
   @apply py-16 px-6 relative overflow-hidden;
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgba(139, 92, 246, 0.05) 50%,
-    transparent 100%
-  );
+ 
 
   &::before {
     content: "";
