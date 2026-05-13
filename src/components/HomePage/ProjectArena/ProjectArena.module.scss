@@ -2,83 +2,183 @@
 @import "@/styles/laser.scss";
 
 .project-arena {
-  @apply p-6;
-}
+  @apply py-16 px-6 relative overflow-hidden;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(139, 92, 246, 0.05) 50%,
+    transparent 100%
+  );
 
-.title {
-  @apply text-3xl font-bold mb-8 text-center;
-}
-
-.grid-container {
-  @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;
-}
-
-.project-card {
-  @apply shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl transition-shadow duration-300;
-
-  &:hover {
-    @include laser-glow;
-    border-radius: 1.5rem;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at top-left, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom-right, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+    pointer-events: none;
   }
-}
 
-.video-thumbnail {
-  @apply relative h-56 w-full cursor-pointer;
-}
+  .title {
+    @apply text-4xl md:text-5xl font-extrabold mb-4 text-center tracking-tight;
+  }
 
-.video-iframe {
-  @apply absolute top-0 left-0 w-full h-full object-cover pointer-events-none;
-}
+  .title-sub {
+    @apply text-[7vmin] leading-tight mb-12 text-center;
 
-.loader-image {
-  @apply object-cover p-4;
-}
+    .highlight {
+      @apply font-bold text-[9vmin];
+      background-image: url("/assets/aurabrain.gif");
+      background-size: 81px;
+      background-position: center;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
 
-.project-info {
-  @apply p-5;
-}
+      -webkit-text-stroke: 1px rgba(241, 9, 9, 0.5);
+    }
+  }
 
-.project-title {
-  @apply text-xl font-semibold mb-2;
-}
+  .grid-container {
+    @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3 relative z-10;
+  }
 
-.project-description {
-  @apply text-sm mb-4;
-}
+  .project-card {
+    @apply rounded-2xl overflow-hidden transition-all duration-500;
+    background: linear-gradient(
+      145deg,
+      rgba(15, 15, 15, 0.9) 0%,
+      rgba(30, 30, 30, 0.95) 100%
+    );
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 
-.tags-container {
-  @apply flex flex-wrap gap-2 mb-4;
-}
+    &:hover {
+      @include laser-glow;
+      transform: translateY(-6px) scale(1.02);
+      border-color: rgba(139, 92, 246, 0.5);
+      box-shadow:
+        0 12px 40px rgba(139, 92, 246, 0.2),
+        0 4px 16px rgba(59, 130, 246, 0.15);
+    }
+  }
 
-.tag {
-  @apply px-3 py-1 text-xs rounded-full bg-neutral-200  text-black;
-}
+  .video-thumbnail {
+    @apply relative h-56 w-full cursor-pointer overflow-hidden;
 
-.links-container {
-  @apply flex gap-3;
-}
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
 
-.live-demo-link {
-  @apply text-sm font-medium text-blue-600 hover:underline flex items-center;
-}
+    &:hover::after {
+      opacity: 0;
+    }
+  }
 
-.source-code-link {
-  @apply text-sm font-medium text-green-600 hover:underline flex items-center;
-}
+  .video-iframe {
+    @apply absolute top-0 left-0 w-full h-full object-cover pointer-events-none;
+    transition: transform 0.4s ease;
 
-.video-overlay {
-  @apply fixed inset-0 bg-black flex items-center justify-center z-50;
-  background-color: rgba(0, 0, 0, 0.8);
-}
+    .project-card:hover & {
+      transform: scale(1.05);
+    }
+  }
 
-.video-modal-content {
-  @apply relative w-full max-w-4xl aspect-video;
-}
+  .loader-image {
+    @apply object-cover p-4;
+  }
 
-.video-modal-iframe {
-  @apply w-full h-full rounded-lg;
-}
+  .project-info {
+    @apply p-5;
+  }
 
-.close-button {
-  @apply absolute -top-10 right-0 text-white text-3xl;
+  .project-title {
+    @apply text-xl font-bold mb-2;
+    background: linear-gradient(90deg, #e2e8f0, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .project-description {
+    @apply text-sm mb-4 leading-relaxed;
+    color: rgba(203, 213, 225, 0.8);
+  }
+
+  .tags-container {
+    @apply flex flex-wrap gap-2 mb-4;
+  }
+
+  .tag {
+    @apply px-3 py-1 text-xs rounded-full font-medium;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+    color: #c4b5fd;
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    transition: all 0.3s ease;
+
+    .project-card:hover & {
+      border-color: rgba(139, 92, 246, 0.5);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
+      color: #ddd6fe;
+    }
+  }
+
+  .links-container {
+    @apply flex gap-3;
+  }
+
+  .live-demo-link {
+    @apply text-sm font-semibold flex items-center gap-1.5 px-4 py-2 rounded-full;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.15));
+      color: #93c5fd;
+      border-color: rgba(59, 130, 246, 0.6);
+      transform: translateX(4px);
+    }
+  }
+
+  .source-code-link {
+    @apply text-sm font-semibold flex items-center gap-1.5 px-4 py-2 rounded-full;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.15));
+      color: #a7f3d0;
+      border-color: rgba(16, 185, 129, 0.6);
+      transform: translateX(4px);
+    }
+  }
+
+  .video-overlay {
+    @apply fixed inset-0 bg-black/90 flex items-center justify-center z-50 backdrop-blur-sm;
+  }
+
+  .video-modal-content {
+    @apply relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden;
+    box-shadow: 0 0 60px rgba(139, 92, 246, 0.3);
+  }
+
+  .video-modal-iframe {
+    @apply w-full h-full rounded-lg;
+  }
+
+  .close-button {
+    @apply absolute -top-10 right-0 text-white text-3xl transition-all duration-300 hover:scale-125;
+  }
 }

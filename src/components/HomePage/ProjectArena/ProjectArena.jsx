@@ -13,6 +13,9 @@ export default function ProjectArena() {
   return (
     <section id="projects" className={clsx(styles["project-arena"])}>
       <h1 className={clsx(styles["title"])}>Project Arena</h1>
+      <p className={clsx(styles["title-sub"])}>
+        What I <span className={clsx(styles["highlight"])}>Build</span>
+      </p>
       <div className={clsx(styles["grid-container"])}>
         {projects.map((project, idx) => (
           <motion.div
