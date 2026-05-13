@@ -84,6 +84,18 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className={clsx(styles.contactSection)}>
+      {/* Animated Google Maps — zooms to India then out */}
+      <div className={clsx(styles["map-container"])}>
+        <iframe
+          className={clsx(styles["map-iframe"])}
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117702.62603407589!2d86.128048937207!3d22.79479012018744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e31989f0e2b5%3a0xeeec8e81ce9b344!2sjamshedpur%2c%20jharkhand!5e0!3m2!1sen!2sin!4v1778705681590!5m2!1sen!2sin"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Map of India"
+        />
+      </div>
+
       <div className={clsx(styles.contentWrapper)}>
         <div className={clsx(styles.textCenter)}>
           <h2 className={clsx(styles.connectTitle)}>Let's Connect</h2>

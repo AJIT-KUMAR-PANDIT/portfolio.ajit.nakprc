@@ -1,9 +1,51 @@
 @import "@/styles/laser.scss";
 
+@keyframes map-zoom {
+  0% {
+    transform: scale(1.0) translate(0%, 0%);
+    opacity: 0.35;
+  }
+  40% {
+    transform: scale(1.5) translate(-10%, -10%);
+    opacity: 0.35;
+  }
+  55% {
+    transform: scale(1.6) translate(-12%, -12%);
+    opacity: 0.35;
+  }
+  95% {
+    transform: scale(1.0) translate(0%, 0%);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(1.0) translate(0%, 0%);
+    opacity: 0.35;
+  }
+}
+
 .contactSection {
   padding: 4rem 1rem;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, rgba(15, 15, 15, 0.3) 0%, rgba(15, 15, 15, 0.15) 50%, rgba(15, 15, 15, 0.3) 100%);
+
+  .map-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+
+    .map-iframe {
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      border: none;
+      animation: map-zoom 10s ease-in-out infinite;
+      filter: saturate(0.7) brightness(0.85) contrast(1.1) drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+    }
+  }
 }
 
 .contentWrapper {
@@ -68,15 +110,19 @@
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  background: rgba(15, 15, 15, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(8px);
 
   @media (prefers-color-scheme: dark) {
-    border-color: #374151;
+    border-color: rgba(139, 92, 246, 0.2);
   }
 
   &:hover {
     @include laser-glow;
     border-radius: 1.5rem;
+    border-color: rgba(139, 92, 246, 0.4);
   }
 }
 
@@ -182,15 +228,19 @@
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  background: rgba(15, 15, 15, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(8px);
 
   @media (prefers-color-scheme: dark) {
-    border-color: #374151;
+    border-color: rgba(139, 92, 246, 0.2);
   }
 
   &:hover {
     @include laser-glow;
     border-radius: 1.5rem;
+    border-color: rgba(139, 92, 246, 0.4);
   }
 }
 
@@ -341,13 +391,16 @@
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  background: rgba(15, 15, 15, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(8px);
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
 
   @media (prefers-color-scheme: dark) {
-    border-color: #374151;
+    border-color: rgba(139, 92, 246, 0.2);
   }
 }
 
