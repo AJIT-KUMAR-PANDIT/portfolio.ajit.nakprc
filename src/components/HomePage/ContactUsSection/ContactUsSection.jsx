@@ -10,11 +10,19 @@ import {
 } from "react-icons/fa";
 
 import React, { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import axios from "axios";
 import SocialMediaSection from "@/components/common/SocialMediaSection/SocialMediaSection";
 import { submitContactForm } from "@/app/actions/ContactForm";
 
 export default function ContactSection() {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
+  const mapFilter = isDark
+    ? "invert(180deg) brightness(0.8) contrast(1.2)"
+    : "saturate(0.7) brightness(0.85) contrast(1.1)";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -88,6 +96,7 @@ export default function ContactSection() {
       <div className={clsx(styles["map-container"])}>
         <iframe
           className={clsx(styles["map-iframe"])}
+          style={{ filter: mapFilter }}
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117702.62603407589!2d86.128048937207!3d22.79479012018744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e31989f0e2b5%3a0xeeec8e81ce9b344!2sjamshedpur%2c%20jharkhand!5e0!3m2!1sen!2sin!4v1778705681590!5m2!1sen!2sin"
           allowFullScreen
           loading="lazy"
