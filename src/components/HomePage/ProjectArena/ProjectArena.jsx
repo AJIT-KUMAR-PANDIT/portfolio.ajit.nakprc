@@ -9,6 +9,17 @@ import clsx from "clsx";
 
 export default function ProjectArena() {
   const [activeVideo, setActiveVideo] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredProjects = projects.filter((project) => {
+    if (!searchTerm.trim()) return true;
+    const q = searchTerm.toLowerCase();
+    return (
+      project.title.toLowerCase().includes(q) ||
+      project.description.toLowerCase().includes(q) ||
+      project.tags?.some((tag) => tag.toLowerCase().includes(q))
+    );
+  });
 
   return (
     <section id="projects" className={clsx(styles["project-arena"])}>
@@ -16,8 +27,49 @@ export default function ProjectArena() {
       <p className={clsx(styles["title-sub"])}>
         What I <span className={clsx(styles["highlight"])}>Build</span>
       </p>
+
+      {/* Search Bar */}
+      <div className={clsx(styles["search-container"])}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="currentColor"
+          className={clsx(styles["search-icon"])}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          />
+        </svg>
+        <input
+          type="text"
+          placeholder="Search projects by name, description, or tech..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={clsx(styles["search-input"])}
+        />
+        {searchTerm && (
+          <button
+            className={clsx(styles["search-clear"])}
+            onClick={() => setSearchTerm("")}
+          >
+            ✕
+          </button>
+        )}
+      </div>
+
+      {/* No Results Message */}
+      {searchTerm && filteredProjects.length === 0 && (
+        <p className={clsx(styles["no-results"])}>
+          No projects found for "<span className={clsx(styles["no-results-q"])}>{searchTerm}</span>"
+        </p>
+      )}
+
       <div className={clsx(styles["grid-container"])}>
-        {projects.map((project, idx) => (
+        {filteredProjects.map((project, idx) => (
           <motion.div
             key={idx}
             initial={{ opacity: 0, y: 40 }}
