@@ -13,7 +13,6 @@ const SkillsSection = React.lazy(() =>
 );
 const SocialTimelineSection = React.lazy(() =>
   import("@/components/HomePage/SocialTimelineSection/SocialTimelineSection")
-    .then((module) => ({ default: module.default }))
 );
 
 const ServicesSection = React.lazy(() =>
