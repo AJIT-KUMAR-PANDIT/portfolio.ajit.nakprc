@@ -11,6 +11,11 @@ const AboutSection = React.lazy(() =>
 const SkillsSection = React.lazy(() =>
   import("@/components/HomePage/SkillsSection/SkillsSection")
 );
+const SocialTimelineSection = React.lazy(() =>
+  import("@/components/HomePage/SocialTimelineSection/SocialTimelineSection")
+    .then((module) => ({ default: module.default }))
+);
+
 const ServicesSection = React.lazy(() =>
   import("@/components/HomePage/ServicesSection/ServicesSection")
 );
@@ -50,6 +55,7 @@ export default function Home() {
           <HeroSection />
           <AboutSection />
           <SkillsSection />
+          <SocialTimelineSection />
           {/* <ServicesSection /> */}
           {/* <ExperienceSection /> */}
           <ProjectArena />
