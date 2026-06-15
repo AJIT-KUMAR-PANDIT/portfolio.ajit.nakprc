@@ -64,7 +64,7 @@ const BackgroundAvatar = () => {
       for (let i = 1; i <= frameCount; i++) {
         const img = new Image();
         const frameNumber = String(i).padStart(3, "0");
-        img.src = `/images/avatar2/myavtar_frame_${frameNumber}.png`;
+        img.src = `/images/avatar/processed-${String(i).padStart(3, "0")}.png`;
 
         imagePromises.push(
           new Promise((resolve) => {
