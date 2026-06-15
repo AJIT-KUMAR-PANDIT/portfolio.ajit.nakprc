@@ -29,7 +29,7 @@ export default function SkillsSection() {
       <div className={clsx(styles.videoContainer)}>
         <video
           className={clsx(styles.video)}
-          src="/assets/skillssection1.webm"
+          src="/assets/a.mp4"
           autoPlay
           loop
           muted
