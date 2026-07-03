@@ -1,4 +1,5 @@
 @reference "tailwindcss";
+@import "@/styles/laser.scss";
 
 @keyframes fadeIn {
   from {
@@ -54,10 +55,11 @@
       @apply space-y-16;
 
       .section-card {
-        @apply p-6 md:p-10 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out;
+        @apply p-6 md:p-10 rounded-2xl transition-all duration-300 ease-in-out;
+        @include apple-liquid-glass;
 
         &:hover {
-          @apply transform -translate-y-1 scale-105 shadow-xl;
+          @apply transform -translate-y-1 scale-105;
         }
 
         h3 {
@@ -73,10 +75,11 @@
         @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10;
 
         .trait-card {
-          @apply p-6 md:p-10 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-center transition-all duration-300 ease-in-out;
+          @apply p-6 md:p-10 rounded-2xl text-center transition-all duration-300 ease-in-out;
+          @include apple-liquid-glass;
 
           &:hover {
-            @apply transform -translate-y-1 scale-105 shadow-xl;
+            @apply transform -translate-y-1 scale-105;
           }
 
           h3 {

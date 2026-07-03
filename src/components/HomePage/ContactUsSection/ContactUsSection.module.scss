@@ -106,22 +106,7 @@
 .contactInfoCard {
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(139, 92, 246, 0.15);
-  background: rgba(15, 15, 15, 0.781);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(8px);
-
-  @media (prefers-color-scheme: dark) {
-    border-color: rgba(139, 92, 246, 0.2);
-  }
-
-  &:hover {
-    @include laser-glow;
-    border-radius: 1.5rem;
-    border-color: rgba(139, 92, 246, 0.4);
-  }
+  @include apple-liquid-glass;
 }
 
 .contactInfoTitle {
@@ -224,22 +209,7 @@
 .contactFormWrapper {
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(139, 92, 246, 0.15);
-  background: rgba(15, 15, 15, 0.781);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(8px);
-
-  @media (prefers-color-scheme: dark) {
-    border-color: rgba(139, 92, 246, 0.2);
-  }
-
-  &:hover {
-    @include laser-glow;
-    border-radius: 1.5rem;
-    border-color: rgba(139, 92, 246, 0.4);
-  }
+  @include apple-liquid-glass;
 }
 
 .contactFormTitle {
@@ -387,19 +357,10 @@
 .callToActionCard {
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(139, 92, 246, 0.15);
-  background: rgba(15, 15, 15, 0.45);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(8px);
+  @include apple-liquid-glass;
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
-
-  @media (prefers-color-scheme: dark) {
-    border-color: rgba(139, 92, 246, 0.2);
-  }
 }
 
 .callToActionTitle {

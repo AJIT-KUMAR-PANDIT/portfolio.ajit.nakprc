@@ -147,36 +147,15 @@
   display: flex;
   align-items: center;
   padding: 0.875rem 1.25rem;
-  background: #f3f4f6;
-  border-radius: 0.75rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  @include apple-liquid-glass;
+
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   color: inherit;
 
   &:hover {
-    background: #e5e7eb;
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
     .skillIcon {
-      transform: scale(1.1) rotate(5deg);
-    }
-
-    &:hover {
-      @include laser-glow;
-      border-radius: 1.5rem;
-    }
-  }
-
-  :global(.dark) & {
-    background: #1f2937;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-
-    &:hover {
-      background: #374151;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transform: scale(1.15) rotate(5deg);
     }
   }
 

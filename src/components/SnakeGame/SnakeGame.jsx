@@ -500,7 +500,7 @@ export default function SnakeGame() {
           align-items: center;
           gap: 16px;
           padding: 24px 16px;
-          background: #0a0a0f;
+          background: transparent;
           min-height: 100vh;
           font-family: 'Courier New', Courier, monospace;
         }
@@ -538,10 +538,12 @@ export default function SnakeGame() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          background: rgba(0,255,136,0.08);
-          border: 1px solid rgba(0,255,136,0.3);
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(10px) saturate(150%);
+          -webkit-backdrop-filter: blur(10px) saturate(150%);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           padding: 6px 16px;
-          border-radius: 6px;
+          border-radius: 8px;
         }
         .stat-label {
           font-size: 10px;
@@ -580,10 +582,15 @@ export default function SnakeGame() {
         @keyframes pulse-badge { 0%,100%{box-shadow:0 0 15px rgba(255,220,0,0.2)} 50%{box-shadow:0 0 30px rgba(255,220,0,0.5)} }
         .canvas-container {
           position: relative;
-          border: 2px solid rgba(0,255,136,0.35);
-          box-shadow: 0 0 40px rgba(0,255,136,0.15), 0 0 80px rgba(0,255,136,0.05);
-          border-radius: 4px;
+          border-radius: 12px;
           overflow: hidden;
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(20px) saturate(180%);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          box-shadow: 
+            0 8px 32px 0 rgba(31, 38, 135, 0.1),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         }
         #snake-canvas {
           display: block;
