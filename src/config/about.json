@@ -24,6 +24,11 @@
     ],
     "education": [
       {
+        "degree": "M.Tech",
+        "institution": "ARKA JAIN University",
+        "years": "Present"
+      },
+      {
         "degree": "B.E",
         "institution": "Chandigarh University [ CU ]",
         "years": "2020-2023"

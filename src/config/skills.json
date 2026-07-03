@@ -113,5 +113,30 @@
                 "link": "https://github.com/"
             }
         ]
+    },
+    {
+        "category": "AI Tools",
+        "skills": [
+            {
+                "name": "Claude Code",
+                "image": "/images/skills/ai.svg",
+                "link": "https://claude.ai/"
+            },
+            {
+                "name": "Gemini CLI",
+                "image": "/images/skills/ai.svg",
+                "link": "https://gemini.google.com/"
+            },
+            {
+                "name": "Ollama",
+                "image": "/images/skills/ai.svg",
+                "link": "https://ollama.com/"
+            },
+            {
+                "name": "LM Studio",
+                "image": "/images/skills/ai.svg",
+                "link": "https://lmstudio.ai/"
+            }
+        ]
     }
 ]
