@@ -8,19 +8,16 @@ const WIDTH = COLS * CELL;
 const HEIGHT = ROWS * CELL;
 const SPEED_AI = 80;
 const SPEED_PLAYER = 110;
-const COLORS = {
-  bg: "#0a0a0f",
-  grid: "#111122",
-  snakeHead: "#00ff88",
-  snakeBody: "#00cc66",
-  snakeTail: "#007744",
-  food: "#ff3366",
-  foodGlow: "rgba(255,51,102,0.6)",
-  text: "#ffffff",
-  ui: "rgba(0,255,136,0.15)",
-  uiBorder: "rgba(0,255,136,0.4)",
-  particle: "#ffdd00",
-};
+const getColors = (isDark) => ({
+  bg: isDark ? "#0a0a0f" : "#f1f5f9",
+  grid: isDark ? "#111122" : "#cbd5e1",
+  snakeHead: isDark ? "#00ff88" : "#10b981",
+  snakeBody: isDark ? "#00cc66" : "#34d399",
+  snakeTail: isDark ? "#007744" : "#6ee7b7",
+  food: isDark ? "#ff3366" : "#f43f5e",
+  text: isDark ? "#ffffff" : "#0f172a",
+  particle: isDark ? "#ffdd00" : "#f59e0b",
+});
 
 function getRandPos(snake) {
   while (true) {
@@ -304,12 +301,15 @@ export default function SnakeGame() {
         tick();
       }
 
+      const isDark = document.documentElement.classList.contains('dark');
+      const colors = getColors(isDark);
+
       // --- Draw ---
-      ctx.fillStyle = COLORS.bg;
+      ctx.fillStyle = colors.bg;
       ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
       // Grid
-      ctx.strokeStyle = COLORS.grid;
+      ctx.strokeStyle = colors.grid;
       ctx.lineWidth = 0.5;
       for (let x = 0; x <= COLS; x++) {
         ctx.beginPath(); ctx.moveTo(x * CELL, 0); ctx.lineTo(x * CELL, HEIGHT); ctx.stroke();
@@ -339,17 +339,17 @@ export default function SnakeGame() {
       const fx = g.food.x * CELL + CELL / 2;
       const fy = g.food.y * CELL + CELL / 2;
       ctx.save();
-      ctx.shadowColor = COLORS.food;
+      ctx.shadowColor = colors.food;
       ctx.shadowBlur = 20 * pulse;
       // outer glow ring
-      ctx.strokeStyle = `rgba(255,51,102,${0.4 * pulse})`;
+      ctx.strokeStyle = isDark ? `rgba(255,51,102,${0.4 * pulse})` : `rgba(244,63,94,${0.4 * pulse})`;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.arc(fx, fy, CELL * 0.45 * pulse, 0, Math.PI * 2);
       ctx.stroke();
       // pixel square food
       const fs = CELL * 0.55 * pulse;
-      ctx.fillStyle = COLORS.food;
+      ctx.fillStyle = colors.food;
       ctx.fillRect(fx - fs / 2, fy - fs / 2, fs, fs);
       ctx.restore();
 
@@ -362,13 +362,13 @@ export default function SnakeGame() {
         if (i === 0) {
           // Head
           ctx.save();
-          ctx.shadowColor = COLORS.snakeHead;
+          ctx.shadowColor = colors.snakeHead;
           ctx.shadowBlur = 18;
-          ctx.fillStyle = COLORS.snakeHead;
+          ctx.fillStyle = colors.snakeHead;
           const hs = CELL - 2;
           ctx.fillRect(s.x * CELL + 1, s.y * CELL + 1, hs, hs);
           // Eyes
-          ctx.fillStyle = COLORS.bg;
+          ctx.fillStyle = colors.bg;
           const ex = g.dir.x, ey = g.dir.y;
           const eyeOff = 3;
           const eyeSize = 2.5;
@@ -388,8 +388,8 @@ export default function SnakeGame() {
           ctx.restore();
         } else {
           // Body gradient
-          const green = Math.round(255 * (1 - t * 0.6));
-          ctx.fillStyle = `rgb(0, ${green}, ${Math.round(green * 0.5)})`;
+          let rgbStr = isDark ? `0, ${Math.round(255 * (1 - t * 0.6))}, ${Math.round(Math.round(255 * (1 - t * 0.6)) * 0.5)}` : `16, ${Math.round(185 * (1 - t * 0.4))}, ${Math.round(129 * (1 - t * 0.4))}`;
+          ctx.fillStyle = `rgb(${rgbStr})`;
           const pad = 1 + t * 2;
           ctx.fillRect(
             s.x * CELL + pad,
@@ -404,21 +404,22 @@ export default function SnakeGame() {
       if (!g.alive) {
         ctx.save();
         ctx.fillStyle = "rgba(10,10,15,0.78)";
+        if (!isDark) ctx.fillStyle = "rgba(241,245,249,0.85)";
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
         ctx.font = "bold 42px 'Courier New', monospace";
         ctx.textAlign = "center";
-        ctx.fillStyle = COLORS.food;
-        ctx.shadowColor = COLORS.food;
+        ctx.fillStyle = colors.food;
+        ctx.shadowColor = colors.food;
         ctx.shadowBlur = 30;
         ctx.fillText("GAME OVER", WIDTH / 2, HEIGHT / 2 - 40);
         ctx.font = "20px 'Courier New', monospace";
-        ctx.fillStyle = COLORS.text;
+        ctx.fillStyle = colors.text;
         ctx.shadowBlur = 0;
         ctx.fillText(`Score: ${g.score}`, WIDTH / 2, HEIGHT / 2);
         ctx.fillText(`High: ${g.highScore}`, WIDTH / 2, HEIGHT / 2 + 30);
         ctx.font = "16px 'Courier New', monospace";
-        ctx.fillStyle = COLORS.snakeHead;
-        ctx.shadowColor = COLORS.snakeHead;
+        ctx.fillStyle = colors.snakeHead;
+        ctx.shadowColor = colors.snakeHead;
         ctx.shadowBlur = 10;
         ctx.fillText("Press R to restart", WIDTH / 2, HEIGHT / 2 + 70);
         ctx.restore();
@@ -495,6 +496,19 @@ export default function SnakeGame() {
 
       <style>{`
         .snake-wrapper {
+          --title-color: #10b981;
+          --title-shadow: 0 0 20px #10b981, 0 0 40px #10b98155;
+          --text-color: #0f172a;
+          --text-muted: #64748b;
+          --stat-val: #10b981;
+          --glass-bg: rgba(255, 255, 255, 0.15);
+          --glass-border: rgba(255, 255, 255, 0.3);
+          --glass-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+          --key-bg: rgba(0,0,0,0.05);
+          --key-border: rgba(0,0,0,0.1);
+          --canvas-border: rgba(16,185,129,0.35);
+          --canvas-shadow: 0 0 40px rgba(16,185,129,0.15), 0 0 80px rgba(16,185,129,0.05);
+          
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -504,6 +518,22 @@ export default function SnakeGame() {
           min-height: 100vh;
           font-family: 'Courier New', Courier, monospace;
         }
+
+        :global(.dark) .snake-wrapper {
+          --title-color: #00ff88;
+          --title-shadow: 0 0 20px #00ff88, 0 0 40px #00ff8855;
+          --text-color: #ffffff;
+          --text-muted: #ffffff88;
+          --stat-val: #00ff88;
+          --glass-bg: rgba(255, 255, 255, 0.05);
+          --glass-border: rgba(255, 255, 255, 0.1);
+          --glass-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+          --key-bg: rgba(255,255,255,0.1);
+          --key-border: rgba(255,255,255,0.2);
+          --canvas-border: rgba(0,255,136,0.35);
+          --canvas-shadow: 0 0 40px rgba(0,255,136,0.15), 0 0 80px rgba(0,255,136,0.05);
+        }
+
         .snake-header {
           display: flex;
           align-items: center;
@@ -514,9 +544,9 @@ export default function SnakeGame() {
         .snake-title {
           font-size: 22px;
           font-weight: 900;
-          color: #00ff88;
+          color: var(--title-color);
           letter-spacing: 4px;
-          text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff8855;
+          text-shadow: var(--title-shadow);
           display: flex;
           align-items: center;
           gap: 10px;
@@ -538,23 +568,23 @@ export default function SnakeGame() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          background: rgba(255, 255, 255, 0.05);
+          background: var(--glass-bg);
           backdrop-filter: blur(10px) saturate(150%);
           -webkit-backdrop-filter: blur(10px) saturate(150%);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border: 1px solid var(--glass-border);
           padding: 6px 16px;
           border-radius: 8px;
         }
         .stat-label {
           font-size: 10px;
-          color: #00ff8888;
+          color: var(--text-muted);
           letter-spacing: 2px;
         }
         .stat-value {
           font-size: 20px;
           font-weight: bold;
-          color: #00ff88;
-          text-shadow: 0 0 10px #00ff88;
+          color: var(--stat-val);
+          text-shadow: 0 0 10px var(--stat-val);
         }
         .mode-badge {
           padding: 8px 16px;
@@ -584,13 +614,13 @@ export default function SnakeGame() {
           position: relative;
           border-radius: 12px;
           overflow: hidden;
-          background: rgba(255, 255, 255, 0.05);
+          background: var(--glass-bg);
           backdrop-filter: blur(20px) saturate(180%);
           -webkit-backdrop-filter: blur(20px) saturate(180%);
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          border: 1px solid var(--glass-border);
           box-shadow: 
             0 8px 32px 0 rgba(31, 38, 135, 0.1),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            var(--glass-shadow);
         }
         #snake-canvas {
           display: block;
@@ -635,15 +665,15 @@ export default function SnakeGame() {
           display: flex;
           align-items: center;
           gap: 8px;
-          color: #ffffff88;
+          color: var(--text-muted);
           font-size: 13px;
         }
         .ctrl-key {
-          background: rgba(255,255,255,0.1);
-          border: 1px solid rgba(255,255,255,0.2);
+          background: var(--key-bg);
+          border: 1px solid var(--key-border);
           padding: 3px 8px;
           border-radius: 4px;
-          color: #fff;
+          color: var(--text-color);
           font-size: 12px;
         }
         .ai-btn {

@@ -46,38 +46,62 @@
 
   .search-input {
     @apply w-full pl-12 pr-10 py-3.5 rounded-full text-sm outline-none transition-all duration-300;
-    background: rgba(15, 15, 15, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(139, 92, 246, 0.2);
-    color: #e2e8f0;
+    color: #1e293b;
+
+    :global(.dark) & {
+      background: rgba(15, 15, 15, 0.8);
+      color: #e2e8f0;
+    }
 
     &::placeholder {
-      color: rgba(203, 213, 225, 0.35);
+      color: rgba(15, 23, 42, 0.4);
+      :global(.dark) & {
+        color: rgba(203, 213, 225, 0.35);
+      }
     }
 
     &:focus {
       border-color: rgba(139, 92, 246, 0.6);
       box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
-      background: rgba(20, 20, 20, 0.95);
+      background: rgba(255, 255, 255, 0.95);
+      :global(.dark) & {
+        background: rgba(20, 20, 20, 0.95);
+      }
     }
   }
 
   .search-clear {
     @apply absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center rounded-full text-sm transition-all duration-200;
-    color: rgba(203, 213, 225, 0.4);
+    color: rgba(15, 23, 42, 0.4);
+    :global(.dark) & {
+      color: rgba(203, 213, 225, 0.4);
+    }
 
     &:hover {
-      color: #e2e8f0;
-      background: rgba(139, 92, 246, 0.2);
+      color: #0f172a;
+      background: rgba(139, 92, 246, 0.1);
+      :global(.dark) & {
+        color: #e2e8f0;
+        background: rgba(139, 92, 246, 0.2);
+      }
     }
   }
 
   .no-results {
     @apply text-center text-sm mt-8 mb-4 relative z-10;
-    color: rgba(203, 213, 225, 0.5);
+    color: rgba(15, 23, 42, 0.6);
+    :global(.dark) & {
+      color: rgba(203, 213, 225, 0.5);
+    }
   }
 
   .no-results-q {
-    color: #c4b5fd;
+    color: #6d28d9;
+    :global(.dark) & {
+      color: #c4b5fd;
+    }
     font-weight: 600;
   }
 
@@ -126,7 +150,10 @@
 
   .project-title {
     @apply text-xl font-bold mb-2;
-    background: linear-gradient(90deg, #e2e8f0, #ffffff);
+    background: linear-gradient(90deg, #1e293b, #475569);
+    :global(.dark) & {
+      background: linear-gradient(90deg, #e2e8f0, #ffffff);
+    }
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -134,7 +161,10 @@
 
   .project-description {
     @apply text-sm mb-4 leading-relaxed;
-    color: rgba(203, 213, 225, 0.8);
+    color: #4b5563;
+    :global(.dark) & {
+      color: rgba(203, 213, 225, 0.8);
+    }
   }
 
   .tags-container {
@@ -143,15 +173,26 @@
 
   .tag {
     @apply px-3 py-1 text-xs rounded-full font-medium;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
-    color: #c4b5fd;
-    border: 1px solid rgba(139, 92, 246, 0.25);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+    color: #6d28d9;
+    border: 1px solid rgba(139, 92, 246, 0.2);
     transition: all 0.3s ease;
 
+    :global(.dark) & {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+      color: #c4b5fd;
+      border: 1px solid rgba(139, 92, 246, 0.25);
+    }
+
     .project-card:hover & {
-      border-color: rgba(139, 92, 246, 0.5);
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
-      color: #ddd6fe;
+      border-color: rgba(139, 92, 246, 0.4);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+      color: #5b21b6;
+      :global(.dark) & {
+        border-color: rgba(139, 92, 246, 0.5);
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
+        color: #ddd6fe;
+      }
     }
   }
 

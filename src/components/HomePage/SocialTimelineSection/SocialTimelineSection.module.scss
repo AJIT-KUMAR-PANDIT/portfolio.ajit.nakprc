@@ -69,21 +69,34 @@
 
   .author-name {
     @apply text-sm font-bold truncate;
-    color: #e2e8f0;
+    color: #1e293b;
+    :global(.dark) & {
+      color: #e2e8f0;
+    }
   }
 
   .author-handle {
     @apply text-xs truncate;
-    color: rgba(203, 213, 225, 0.5);
+    color: rgba(15, 23, 42, 0.6);
+    :global(.dark) & {
+      color: rgba(203, 213, 225, 0.5);
+    }
   }
 
   .platform-icon {
     @apply flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300;
-    color: rgba(203, 213, 225, 0.4);
+    color: rgba(15, 23, 42, 0.5);
+    :global(.dark) & {
+      color: rgba(203, 213, 225, 0.4);
+    }
 
     &:hover {
-      color: #e2e8f0;
-      background: rgba(139, 92, 246, 0.2);
+      color: #0f172a;
+      background: rgba(139, 92, 246, 0.1);
+      :global(.dark) & {
+        color: #e2e8f0;
+        background: rgba(139, 92, 246, 0.2);
+      }
     }
   }
 
@@ -93,7 +106,10 @@
 
   .tweet-text {
     @apply text-base leading-relaxed p-5 pt-3 relative z-10 flex-1;
-    color: #cbd5e1;
+    color: #334155;
+    :global(.dark) & {
+      color: #cbd5e1;
+    }
   }
 
   .emoji {
@@ -107,11 +123,17 @@
 
   .date-link {
     @apply text-sm transition-all duration-300;
-    color: rgba(203, 213, 225, 0.4);
+    color: rgba(15, 23, 42, 0.5);
+    :global(.dark) & {
+      color: rgba(203, 213, 225, 0.4);
+    }
     text-decoration: none;
 
     &:hover {
-      color: #c4b5fd;
+      color: #7c3aed;
+      :global(.dark) & {
+        color: #c4b5fd;
+      }
     }
   }
 }
