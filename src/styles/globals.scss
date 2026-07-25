@@ -12,74 +12,119 @@
 }
 
 // Light mode variables
+// Brand Logo Colors: Indigo (#6366F1), Purple (#7C3AED), Blue (#3B82F6)
+
 :root {
-  --background: #ededed;
-  --foreground: #171717;
-  --text-color: #171717;
+  --bg-main: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --border-card: rgba(99, 102, 241, 0.15);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --brand-primary: #6366f1;
+  --brand-secondary: #7c3aed;
+  --brand-accent: #3b82f6;
+  --grid-color: rgba(99, 102, 241, 0.06);
 
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
 }
 
-// Apply grid background to body in light mode
+html.dark {
+  --bg-main: #090d16;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --border-card: rgba(124, 58, 237, 0.25);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --brand-primary: #818cf8;
+  --brand-secondary: #a78bfa;
+  --brand-accent: #60a5fa;
+  --grid-color: rgba(124, 58, 237, 0.08);
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  color: var(--text-color);
+  color: var(--text-primary);
+  background-color: var(--bg-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html {
-  background-color: #e8e4d8;
-  background-image: linear-gradient(to right, #d4cfc3 1px, transparent 1px),
-    linear-gradient(to bottom, #d4cfc3 1px, transparent 1px);
+  background-color: var(--bg-main);
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
   background-size: 40px 40px;
   min-height: 100vh;
   margin: 0;
-  transition: background-color 0.3s ease, background-image 0.3s ease;
   width: 100%;
   height: 100%;
+  transition: background-color 0.3s ease;
 }
 
-html.dark {
-  --text-color: #ffffff;
-  background-color: #1a1a1a;
-  background-image: linear-gradient(to right, #2d2d2d 1px, transparent 1px),
-    linear-gradient(to bottom, #2d2d2d 1px, transparent 1px);
+// Professional Logo Brand Utilities
+.brand-text-gradient {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.btn-primary {
-  @apply bg-[#0062ff] text-white px-6 py-2 rounded-md;
+html.dark .brand-text-gradient {
+  background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.btn-secondary {
-  @apply bg-transparent text-[#0062ff] px-6 py-2 rounded-md border-2 border-[#0062ff];
+.brand-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  backdrop-filter: blur(16px);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
 }
 
-
-
-// ? text glow start
-
-
-.text-glow {
-  font-size: 3.5rem;
-  text-align: center;
-  /* Applying the animation */
-  animation: text-glow 2.5s ease-in-out infinite alternate;
+.brand-card:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
 }
 
-@keyframes text-glow {
-  from {
-    /* Subtle initial glow */
-    text-shadow: 0 0 1px , 0 0 2px , 0 0 5px #7940af8b;
-  }
-  // to {
-  //   /* Intense expanded glow */
-  //   text-shadow: 0 0 2px , 0 0 4px #7940AF, 0 0 5px #7940AF, 0 0 8px #7940AF;
-  // }
+html.dark .brand-card:hover {
+  border-color: rgba(167, 139, 250, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.25);
 }
 
+.brand-btn-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
 
-// text glow end
+.brand-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.45);
+}
+
+.brand-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-card);
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.brand-btn-secondary:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+  background: rgba(99, 102, 241, 0.05);
+}

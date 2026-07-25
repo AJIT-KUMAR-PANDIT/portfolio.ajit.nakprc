@@ -13,9 +13,28 @@ export default function ClientLayout({ children }) {
   const [aiAnswer, setAiAnswer] = useState("");
 
   useEffect(() => {
+    let locomotiveScroll;
+    
+    // Initialize Locomotive Scroll for smooth scrolling
+    import("locomotive-scroll").then((LocomotiveScroll) => {
+      locomotiveScroll = new LocomotiveScroll.default({
+        lenisOptions: {
+          lerp: 0.1,
+          duration: 1.2,
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+        }
+      });
+    });
+
     setTimeout(() => {
       setLoading(false);
     }, 2000); // Simulate a 2-second loading time
+
+    return () => {
+      if (locomotiveScroll) locomotiveScroll.destroy();
+    };
   }, []);
 
   const closeAIModal = () => {
@@ -28,7 +47,7 @@ export default function ClientLayout({ children }) {
       {loading ? (
         <Loader />
       ) : (
-        <>
+        <div data-scroll-container>
           <Nav />
           {children}
           <Dock />
@@ -38,7 +57,7 @@ export default function ClientLayout({ children }) {
             onClose={closeAIModal}
             answer={aiAnswer}
           />
-        </>
+        </div>
       )}
     </>
   );
