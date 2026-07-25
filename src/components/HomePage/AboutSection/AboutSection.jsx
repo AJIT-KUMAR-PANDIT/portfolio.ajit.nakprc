@@ -74,20 +74,20 @@ export default function AboutSection() {
       {/* Stats Counter Strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
         <div className="brand-card-anim brand-card p-6 rounded-xl text-center">
-          <div className="text-2xl md:text-3xl font-extrabold font-mono text-indigo-600 dark:text-indigo-400 mb-1">Fresher</div>
-          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Career Status</div>
+          <div className="text-2xl md:text-3xl font-extrabold font-mono text-indigo-600 dark:text-indigo-400 mb-1">MERN</div>
+          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Full Stack Developer</div>
         </div>
         <div className="brand-card-anim brand-card p-6 rounded-xl text-center">
           <div className="text-3xl md:text-4xl font-extrabold font-mono text-purple-600 dark:text-purple-400 mb-1">15+</div>
-          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Projects Completed</div>
+          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Projects Completed</div>
         </div>
         <div className="brand-card-anim brand-card p-6 rounded-xl text-center">
           <div className="text-3xl md:text-4xl font-extrabold font-mono text-blue-600 dark:text-blue-400 mb-1">12+</div>
-          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Tech Stack Mastery</div>
+          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Tech Stack Mastery</div>
         </div>
         <div className="brand-card-anim brand-card p-6 rounded-xl text-center">
           <div className="text-3xl md:text-4xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400 mb-1">100%</div>
-          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">Code Quality</div>
+          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Code Quality</div>
         </div>
       </div>
 
@@ -105,7 +105,7 @@ export default function AboutSection() {
           </div>
           
           <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Ajit Kumar Pandit</h3>
-          <p className="text-indigo-600 dark:text-indigo-400 font-mono text-sm mb-6 font-semibold">Full Stack MERN Developer (Fresher)</p>
+          <p className="text-indigo-600 dark:text-indigo-400 font-mono text-sm mb-6 font-semibold">Full Stack MERN Developer</p>
 
           <div className="w-full border-t border-indigo-500/15 dark:border-indigo-500/30 pt-6">
             <h4 className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2 justify-center">

@@ -8,9 +8,9 @@ import { Terminal, Shield, Code, Cpu, Download, ArrowRight } from "lucide-react"
 
 const ROLES = [
   "Full Stack MERN Developer",
-  "React & Next.js Engineer",
-  "Node.js Backend Architect",
-  "Enterprise Software Systems Crafter"
+  "React & Next.js Developer",
+  "Node.js Backend Developer",
+  "MERN Stack Developer"
 ];
 
 export const FirstHeroSection = () => {

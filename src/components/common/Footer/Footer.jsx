@@ -114,7 +114,7 @@ export const Footer = () => {
             <div className="brand-card p-8 rounded-2xl">
               <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-2">Ajit Kumar Pandit</h3>
               <p className="text-indigo-600 dark:text-indigo-400 font-mono text-xs uppercase tracking-widest mb-4 font-semibold">
-                Full Stack MERN Developer (Fresher)
+                Full Stack MERN Developer
               </p>
               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 font-sans">
                 Dedicated to engineering high-performance web systems and intuitive digital products.
