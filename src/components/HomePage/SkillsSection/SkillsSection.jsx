@@ -33,52 +33,21 @@ export default function SkillsSection() {
   useGSAP(() => {
     if (loading || skillsData.length === 0) return;
 
-    // Title reveal
-    gsap.fromTo(".skills-title",
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        }
-      }
-    );
+    gsap.from(".skills-title", {
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power2.out",
+      clearProps: "all"
+    });
 
-    // Stagger skill categories reveal
-    gsap.utils.toArray(".skill-category").forEach((category) => {
-      gsap.fromTo(category,
-        { opacity: 0, y: 35 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: category,
-            start: "top 85%",
-          }
-        }
-      );
-
-      // Stagger chips inside
-      gsap.fromTo(category.querySelectorAll(".skill-chip-anim"),
-        { scale: 0.9, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.5,
-          stagger: 0.04,
-          ease: "back.out(1.4)",
-          scrollTrigger: {
-            trigger: category,
-            start: "top 80%",
-          }
-        }
-      );
+    gsap.from(".skill-category", {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power2.out",
+      clearProps: "all"
     });
   }, { scope: containerRef, dependencies: [loading, skillsData] });
 

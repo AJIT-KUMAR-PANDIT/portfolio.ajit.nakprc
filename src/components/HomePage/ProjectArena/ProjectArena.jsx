@@ -40,37 +40,22 @@ export default function ProjectArena() {
   });
 
   useGSAP(() => {
-    // Title animation
-    gsap.fromTo(".project-title-main",
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        }
-      }
-    );
+    gsap.from(".project-title-main", {
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power2.out",
+      clearProps: "all"
+    });
 
-    // Stagger project cards reveal
-    gsap.fromTo(".project-card-anim",
-      { y: 40, opacity: 0, scale: 0.97 },
-      {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".grid-container-anim",
-          start: "top 75%",
-        }
-      }
-    );
+    gsap.from(".project-card-anim", {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.06,
+      ease: "power2.out",
+      clearProps: "all"
+    });
   }, { scope: containerRef, dependencies: [searchTerm, selectedCategory, filteredProjects.length] });
 
   return (

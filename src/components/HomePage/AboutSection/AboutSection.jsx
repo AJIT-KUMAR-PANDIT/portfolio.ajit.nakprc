@@ -29,36 +29,22 @@ export default function AboutSection() {
   useGSAP(() => {
     if (!aboutMe) return;
 
-    // Title animation
-    gsap.fromTo(".about-title", 
-      { y: 50, opacity: 0 }, 
-      { 
-        y: 0, 
-        opacity: 1, 
-        duration: 0.8, 
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        }
-      }
-    );
+    gsap.from(".about-title", { 
+      y: 30, 
+      opacity: 0, 
+      duration: 0.7, 
+      ease: "power2.out",
+      clearProps: "all"
+    });
 
-    // Cards staggered reveal
-    gsap.fromTo(".brand-card-anim",
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".content-wrapper-anim",
-          start: "top 75%",
-        }
-      }
-    );
+    gsap.from(".brand-card-anim", {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power2.out",
+      clearProps: "all"
+    });
   }, { scope: containerRef, dependencies: [aboutMe] });
 
   if (!aboutMe) {

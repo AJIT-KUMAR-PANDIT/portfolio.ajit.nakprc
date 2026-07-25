@@ -107,11 +107,7 @@
   }
 }
 
-// Hide default cursor globally
+// Standard cursor styling
 :global(body) {
-  cursor: url('/file.svg'), auto !important;
-
-  * {
-    cursor: none !important;
-  }
+  cursor: auto;
 }
