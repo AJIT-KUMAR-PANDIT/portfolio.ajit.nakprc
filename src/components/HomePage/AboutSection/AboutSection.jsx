@@ -67,15 +67,15 @@ export default function AboutSection() {
           About <span className="brand-text-gradient">Me</span>
         </h2>
         <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-2xl mx-auto font-mono">
-          Full Stack MERN Developer crafting high-performance digital architectures.
+          Full Stack Developer crafting high-performance digital architectures.
         </p>
       </div>
 
       {/* Stats Counter Strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
         <div className="brand-card-anim brand-card p-6 rounded-xl text-center">
-          <div className="text-2xl md:text-3xl font-extrabold font-mono text-indigo-600 dark:text-indigo-400 mb-1">MERN</div>
-          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Full Stack Developer</div>
+          <div className="text-xl md:text-2xl font-extrabold font-mono text-indigo-600 dark:text-indigo-400 mb-1">FULL STACK</div>
+          <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Web Developer</div>
         </div>
         <div className="brand-card-anim brand-card p-6 rounded-xl text-center">
           <div className="text-3xl md:text-4xl font-extrabold font-mono text-purple-600 dark:text-purple-400 mb-1">15+</div>
@@ -105,7 +105,7 @@ export default function AboutSection() {
           </div>
           
           <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Ajit Kumar Pandit</h3>
-          <p className="text-indigo-600 dark:text-indigo-400 font-mono text-sm mb-6 font-semibold">Full Stack MERN Developer</p>
+          <p className="text-indigo-600 dark:text-indigo-400 font-mono text-sm mb-6 font-semibold">Full Stack Developer</p>
 
           <div className="w-full border-t border-indigo-500/15 dark:border-indigo-500/30 pt-6">
             <h4 className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2 justify-center">

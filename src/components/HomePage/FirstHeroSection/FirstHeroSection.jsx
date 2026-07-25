@@ -7,10 +7,10 @@ import { useGSAP } from "@gsap/react";
 import { Terminal, Shield, Code, Cpu, Download, ArrowRight } from "lucide-react";
 
 const ROLES = [
-  "Full Stack MERN Developer",
+  "Full Stack Developer",
   "React & Next.js Developer",
   "Node.js Backend Developer",
-  "MERN Stack Developer"
+  "Full Stack Web Engineer"
 ];
 
 export const FirstHeroSection = () => {
@@ -127,7 +127,7 @@ export const FirstHeroSection = () => {
             <Cpu className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
             <div>
               <div className="text-slate-500 dark:text-slate-400 text-[10px] tracking-wider uppercase">CORE STACK</div>
-              <div className="text-slate-900 dark:text-white font-bold text-sm">MERN STACK</div>
+              <div className="text-slate-900 dark:text-white font-bold text-sm">FULL STACK</div>
             </div>
           </div>
           <div className="brand-card p-4 flex items-center gap-3">
