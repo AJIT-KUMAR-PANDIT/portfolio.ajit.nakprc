@@ -67,7 +67,7 @@ export const FirstHeroSection = () => {
         <div className="hero-element inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 dark:bg-indigo-950/40 backdrop-blur-md mb-6">
           <span className="w-2 h-2 rounded-full bg-indigo-500 dark:bg-indigo-400 animate-ping" />
           <span className="text-xs font-mono tracking-widest text-indigo-700 dark:text-indigo-300 font-semibold uppercase">
-            AVAILABLE FOR OPPORTUNITIES // CHANDIGARH, INDIA
+            AVAILABLE FOR OPPORTUNITIES // INDIA
           </span>
         </div>
 
