@@ -1,5 +1,5 @@
-import BackgroundAvatar from "@/components/common/BackgroundAvatar/BackgroundAvatar";
 import BackgroundSnake from "@/components/common/BackgroundSnake/BackgroundSnake";
+import BackgroundAvatar from "@/components/common/BackgroundAvatar/BackgroundAvatar";
 import React, { Suspense } from "react";
 
 const HeroSection = React.lazy(() =>
@@ -14,7 +14,6 @@ const SkillsSection = React.lazy(() =>
 const SocialTimelineSection = React.lazy(() =>
   import("@/components/HomePage/SocialTimelineSection/SocialTimelineSection")
 );
-
 const ServicesSection = React.lazy(() =>
   import("@/components/HomePage/ServicesSection/ServicesSection")
 );
@@ -39,9 +38,7 @@ const Footer = React.lazy(() =>
   }))
 );
 const FirstHeroSection = React.lazy(() =>
-  import("@/components/HomePage/FirstHeroSection/FirstHeroSection").then(
-    (module) => ({ default: module.FirstHeroSection })
-  )
+  import("@/components/HomePage/FirstHeroSection/FirstHeroSection")
 );
 
 export default function Home() {
@@ -49,8 +46,12 @@ export default function Home() {
     <>
       <BackgroundSnake />
       <BackgroundAvatar />
-      <main>
-        <Suspense fallback={<div>Loading...</div>}>
+      <main className="relative z-10">
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+          </div>
+        }>
           <HeroSection />
           <AboutSection />
           <SkillsSection />

@@ -4,308 +4,173 @@ import styles from "./ContactUsSection.module.scss";
 import {
   FaEnvelope,
   FaPhone,
-  FaMapMarkerAlt,
   FaCheckCircle,
-  FaPaperPlane,
 } from "react-icons/fa";
 
-import React, { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import SocialMediaSection from "@/components/common/SocialMediaSection/SocialMediaSection";
 import { submitContactForm } from "@/app/actions/ContactForm";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+function TrafficLights() {
+  return (
+    <div className="flex items-center gap-[7px]">
+      <div className="w-3 h-3 rounded-full bg-[#ff5f56] flex items-center justify-center text-[7px] text-black/25 cursor-pointer hover:text-black/40 transition-colors"><span>✕</span></div>
+      <div className="w-3 h-3 rounded-full bg-[#ffbd2e] flex items-center justify-center text-[7px] text-black/25 cursor-pointer hover:text-black/40 transition-colors"><span>−</span></div>
+      <div className="w-3 h-3 rounded-full bg-[#27c93f] flex items-center justify-center text-[7px] text-white/30 cursor-pointer hover:text-white/50 transition-colors font-bold"><span>+</span></div>
+    </div>
+  );
+}
 
 export default function ContactSection() {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+  const sectionRef = useRef(null);
 
-  const mapFilter = isDark
-    ? "invert(180deg) brightness(0.8) contrast(1.2)"
-    : "saturate(0.7) brightness(0.85) contrast(1.1)";
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    phone: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", phone: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [contactInfo, setContactInfo] = useState({
-    email: "loading...",
-    phone: "loading...",
-    location: "loading...",
-  });
+  const [contactInfo, setContactInfo] = useState({ email: "loading...", phone: "loading...", location: "loading..." });
 
   useEffect(() => {
-    const fetchContactInfo = async () => {
-      try {
-        const response = await axios.get("/api/contact");
-        setContactInfo(response.data);
-      } catch (error) {
-        console.error("Error fetching contact info:", error);
-        setContactInfo({
-          email: "error loading",
-          phone: "error loading",
-          location: "error loading",
-        });
-      }
-    };
-
-    fetchContactInfo();
+    axios.get("/api/contact").then((r) => setContactInfo(r.data)).catch(() => setContactInfo({ email: "error", phone: "error", location: "error" }));
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const handleChange = (e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    const result = await submitContactForm(formData);
-
+    const data = new FormData(form);
+    const result = await submitContactForm(data);
     if (result.success) {
       setIsSubmitted(true);
-      setFormData({
-        name: "",
-        emailAddress: "",
-        phoneNumber: "",
-        subject: "",
-        message: "",
-      });
+      setFormData({ name: "", email: "", subject: "", phone: "", message: "" });
+      gsap.from(".success-check", { scale: 0, rotation: -180, duration: 0.6, ease: "back.out(2)" });
     } else {
-      console.error("Form submission failed:", result.message);
-      alert("Failed to send message. Please try again later.");
+      alert("Failed to send message.");
     }
-
     setIsSubmitting(false);
   };
 
+  useGSAP(() => {
+    gsap.from(".contact-title", { y: 40, opacity: 0, skewX: -5, duration: 0.8, ease: "power3.out", clearProps: "all" });
+    gsap.from(".contact-window", { y: 30, opacity: 0, scale: 0.97, duration: 0.7, ease: "back.out(1.4)", clearProps: "all" });
+    gsap.from(".contact-form-field", { x: -20, opacity: 0, duration: 0.45, stagger: 0.08, ease: "power2.out", clearProps: "all" });
+    gsap.from(".contact-info-item", { x: 20, opacity: 0, duration: 0.5, stagger: 0.12, ease: "power2.out", clearProps: "all" });
+  }, { scope: sectionRef });
+
   return (
-    <section id="contact" className={clsx(styles.contactSection)}>
-      {/* Animated Google Maps — zooms to India then out */}
-      <div className={clsx(styles["map-container"])}>
-        <iframe
-          className={clsx(styles["map-iframe"])}
-          style={{ filter: mapFilter }}
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117702.62603407589!2d86.128048937207!3d22.79479012018744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e31989f0e2b5%3a0xeeec8e81ce9b344!2sjamshedpur%2c%20jharkhand!5e0!3m2!1sen!2sin!4v1778705681590!5m2!1sen!2sin"
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Map of India"
-        />
-      </div>
-
-      <div className={clsx(styles.contentWrapper)}>
-        <div className={clsx(styles.textCenter)}>
-          <h2 className={clsx(styles.connectTitle)}>Let's Connect</h2>
-          <p className={clsx(styles.connectDescription)}>
-            Have a project in mind? I'd love to hear about it. Send me a message
-            and let's create something amazing together.
-          </p>
+    <section id="contact" ref={sectionRef} className={clsx(styles.contactSection)}>
+      <div className={clsx("macos-section")}>
+        {/* Section Title */}
+        <div className="text-center mb-10">
+          <div className="macos-badge inline-flex items-center gap-2 mb-3">
+            <span className="dot bg-blue-500" /> Contact
+          </div>
+          <h2 className={clsx("contact-title text-4xl md:text-5xl font-bold tracking-tight")}>Let's Connect</h2>
+          <p className="text-gray-500 dark:text-gray-400 text-base max-w-lg mx-auto mt-2">Have a project in mind? I'd love to hear about it.</p>
         </div>
 
-        <div className={clsx(styles.gridContainer)}>
-          {/* Contact Information */}
-          <div className={clsx(styles.contactInfo)}>
-            <div className={clsx(styles.contactInfoCard)}>
-              <h3 className={clsx(styles.contactInfoTitle)}>Get In Touch</h3>
-              <div className={clsx(styles.contactInfoDetails)}>
-                <div className={clsx(styles.contactInfoItem)}>
-                  <div className={clsx(styles.contactInfoIconWrapper)}>
-                    <FaEnvelope className={clsx(styles.contactInfoIcon)} />
-                  </div>
-                  <div>
-                    <p className={clsx(styles.contactInfoLabel)}>Email</p>
-                    <p className={clsx(styles.contactInfoValue)}>
-                      {contactInfo.email}
-                    </p>
-                  </div>
-                </div>
-
-                <div className={clsx(styles.contactInfoItem)}>
-                  <div className={clsx(styles.contactInfoIconWrapper)}>
-                    <FaPhone className={clsx(styles.contactInfoIcon)} />
-                  </div>
-                  <div>
-                    <p className={clsx(styles.contactInfoLabel)}>Phone</p>
-                    <p className={clsx(styles.contactInfoValue)}>
-                      <a href="tel:+916200281082" style={{ color: "inherit", textDecoration: "none" }}>
-                        {contactInfo.phone}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-
-                <div className={clsx(styles.contactInfoItem)}>
-                  <div className={clsx(styles.contactInfoIconWrapper)}>
-                    <FaMapMarkerAlt className={clsx(styles.contactInfoIcon)} />
-                  </div>
-                  <div>
-                    <p className={clsx(styles.contactInfoLabel)}>Location</p>
-                    <p className={clsx(styles.contactInfoValue)}>
-                      {contactInfo.location}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className={clsx(styles.socialLinks)}>
-                <p className={clsx(styles.socialLinksLabel)}>Follow me on:</p>
-                <SocialMediaSection />
-              </div>
+        {/* macOS Window */}
+        <div className={clsx("contact-window", "macos-window rounded-2xl max-w-3xl mx-auto")}>
+          <div className="rounded-t-2xl">
+            <div className="macos-titlebar justify-between px-6 py-3" style={{ height: 48 }}>
+              <TrafficLights />
+              <span className="titlebar-center text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
+                <FaEnvelope className="w-3.5 h-3.5 opacity-50" /> Contact — Get in Touch
+              </span>
+              <span className="titlebar-spacer" />
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className={clsx(styles.contactFormWrapper)}>
-            <h3 className={clsx(styles.contactFormTitle)}>Send Me a Message</h3>
+          <div className="macos-content !p-5 md:!p-7">
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Left: Contact Info */}
+              <div className="space-y-4 contact-info-item">
+                <div className="macos-card rounded-xl p-5">
+                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Get In Touch</h3>
+                  <div className="space-y-3">
+                    {[
+                      { icon: FaEnvelope, label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}` },
+                      { icon: FaPhone, label: "Phone", value: contactInfo.phone, href: `tel:+916200281082` },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-950/40 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                          <item.icon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-[11px] text-gray-500 uppercase tracking-wider">{item.label}</div>
+                          <div className="text-sm text-gray-900 dark:text-white">
+                            <a href={item.href} className="hover:underline">{item.value}</a>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-            {isSubmitted ? (
-              <div className={clsx(styles.messageSent)}>
-                <FaCheckCircle className={clsx(styles.messageSentIcon)} />
-                <h4 className={clsx(styles.messageSentTitle)}>Message Sent!</h4>
-                <p className={clsx(styles.messageSentDescription)}>
-                  Thank you for reaching out. I'll get back to you soon!
-                </p>
+                {/* Social */}
+                <div className="macos-card rounded-xl p-5">
+                  <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Follow me on</h4>
+                  <SocialMediaSection />
+                </div>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className={clsx(styles.form)}>
-                <div>
-                  <label htmlFor="name" className={clsx(styles.label)}>
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className={clsx(styles.input)}
-                    placeholder="Enter your full name"
-                  />
-                </div>
 
-                <div>
-                  <label htmlFor="email" className={clsx(styles.label)}>
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="emailAddress"
-                    value={formData.emailAddress}
-                    onChange={handleChange}
-                    required
-                    className={clsx(styles.input)}
-                    placeholder="Enter your email address"
-                  />
-                </div>
+              {/* Right: Form */}
+              <div className="contact-form-card">
+                {isSubmitted ? (
+                  <div className="flex flex-col items-center justify-center h-full text-center py-8">
+                    <FaCheckCircle className="success-check w-12 h-12 text-green-500 mb-3" />
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Message Sent!</h4>
+                    <p className="text-sm text-gray-500 mt-1">Thank you for reaching out.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-3.5">
+                    {[
+                      { label: "Name", name: "name", type: "text", placeholder: "Your full name" },
+                      { label: "Email", name: "emailAddress", type: "email", placeholder: "Your email address" },
+                      { label: "Subject", name: "subject", type: "text", placeholder: "Subject" },
+                      { label: "Phone (optional)", name: "phoneNumber", type: "tel", placeholder: "Your phone number" },
+                    ].map((field) => (
+                      <div key={field.name} className="contact-form-field">
+                        <label htmlFor={field.name} className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">{field.label}</label>
+                        <input id={field.name} name={field.name} type={field.type} required placeholder={field.placeholder} onChange={handleChange} className="w-full macos-input text-sm" />
+                      </div>
+                    ))}
+                    <div className="contact-form-field">
+                      <label htmlFor="message" className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Message</label>
+                      <textarea id="message" name="message" required rows={4} placeholder="Tell me about your project…" onChange={handleChange} className="w-full macos-input text-sm resize-none" />
+                    </div>
+                    <button type="submit" disabled={isSubmitting} className="w-full macos-btn-primary flex items-center justify-center gap-2 py-3 text-sm font-medium">
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> Sending…
+                        </>
+                      ) : (
+                        <>Send Message</>
+                      )}
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <div>
-                  <label htmlFor="subject" className={clsx(styles.label)}>
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className={clsx(styles.input)}
-                    placeholder="Enter the subject"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className={clsx(styles.label)}>
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                    className={clsx(styles.input)}
-                    placeholder="Enter your phone number (optional)"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className={clsx(styles.label)}>
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows="6"
-                    className={clsx(styles.textarea)}
-                    placeholder="Tell me about your project or just say hello!"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={clsx(styles.submitButton, {
-                    [styles.disabled]: isSubmitting,
-                  })}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className={clsx(styles.spinner)}></div>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <FaPaperPlane className={clsx(styles.sendIcon)} />
-                      Send Message
-                    </>
-                  )}
-                </button>
-              </form>
+        {/* CTA Card */}
+        <div className="macos-card rounded-xl max-w-3xl mx-auto mt-8 p-6 text-center">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Ready to Start Your Project?</h3>
+          <p className="text-sm text-gray-500 mb-4">Let's discuss your ideas and bring them to life.</p>
+          <div className="flex items-center justify-center gap-3">
+            {contactInfo.scheduleCallUrl && (
+              <a href={contactInfo.scheduleCallUrl} target="_blank" rel="noopener noreferrer" className="macos-btn-primary text-sm">Schedule a Call</a>
             )}
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className={clsx(styles.callToAction)}>
-          <div className={clsx(styles.callToActionCard)}>
-            <h3 className={clsx(styles.callToActionTitle)}>
-              Ready to Start Your Project?
-            </h3>
-            <p className={clsx(styles.callToActionDescription)}>
-              Let's discuss your ideas and bring them to life with cutting-edge
-              technology and innovative solutions.
-            </p>
-            <div className={clsx(styles.callToActionButtons)}>
-              <a
-                href={contactInfo.scheduleCallUrl}
-                className={clsx(styles.callToActionButtonPrimary)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Schedule a Call
-              </a>
-              <a href="#" className={clsx(styles.callToActionButtonSecondary)}>
-                View My Work
-              </a>
-            </div>
+            <a href="#projects" className="macos-btn-secondary text-sm">View My Work</a>
           </div>
         </div>
       </div>
