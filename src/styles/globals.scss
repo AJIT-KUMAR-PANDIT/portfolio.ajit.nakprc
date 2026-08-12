@@ -13,37 +13,37 @@
 
 // ===== macOS Theme Variables =====
 :root {
-  // macOS Sonoma light mode — "Vibrant Blue" wallpaper palette
-  --macos-bg: #f5f5f5;
-  --macos-desktop-gradient-1: #c4d8ff;
-  --macos-desktop-gradient-2: #9fbce6;
-  --macos-desktop-gradient-3: #e8d5f5;
-  --macos-window-bg: rgba(245, 247, 250, 0.85);
-  --macos-window-border: rgba(180, 190, 210, 0.5);
-  --macos-titlebar: rgba(235, 237, 242, 0.95);
-  --macos-titlebar-hover: rgba(245, 247, 250, 0.98);
-  --macos-dock-bg: rgba(245, 247, 250, 0.6);
-  --macos-text-primary: #1d1d1f;
-  --macos-text-secondary: #6e6e73;
-  --macos-text-tertiary: #86868b;
-  --macos-accent: #007aff;
-  --macos-accent-hover: #0056cc;
+  // Professional portfolio palette — refined slate and modern blue
+  --macos-bg: #edf3fb;
+  --macos-desktop-gradient-1: #e8f0fd;
+  --macos-desktop-gradient-2: #d7e3f7;
+  --macos-desktop-gradient-3: #e6ebf8;
+  --macos-window-bg: rgba(255, 255, 255, 0.78);
+  --macos-window-border: rgba(148, 163, 184, 0.35);
+  --macos-titlebar: rgba(244, 247, 251, 0.95);
+  --macos-titlebar-hover: rgba(250, 252, 255, 0.98);
+  --macos-dock-bg: rgba(255, 255, 255, 0.55);
+  --macos-text-primary: #0f172a;
+  --macos-text-secondary: #475569;
+  --macos-text-tertiary: #64748b;
+  --macos-accent: #2855d9;
+  --macos-accent-hover: #1c45b8;
   --macos-red: #ff5f57;
   --macos-yellow: #febc2e;
   --macos-green: #28c840;
-  --macos-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --macos-shadow-md: 0 4px 14px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
-  --macos-shadow-lg: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
-  --macos-shadow-xl: 0 24px 60px rgba(0,0,0,0.15), 0 8px 20px rgba(0,0,0,0.08);
+  --macos-shadow-sm: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+  --macos-shadow-md: 0 4px 14px rgba(15,23,42,0.09), 0 2px 6px rgba(15,23,42,0.04);
+  --macos-shadow-lg: 0 12px 40px rgba(15,23,42,0.12), 0 4px 12px rgba(15,23,42,0.06);
+  --macos-shadow-xl: 0 24px 60px rgba(15,23,42,0.16), 0 8px 20px rgba(15,23,42,0.08);
   --macos-radius-sm: 8px;
   --macos-radius-md: 12px;
   --macos-radius-lg: 16px;
   --macos-radius-xl: 22px;
-  --macos-divider: rgba(0,0,0,0.06);
-  --macos-selection: rgba(0, 122, 255, 0.15);
+  --macos-divider: rgba(15, 23, 42, 0.06);
+  --macos-selection: rgba(40, 85, 217, 0.12);
   --macos-input-bg: rgba(255,255,255,0.8);
-  --macos-tag-bg: rgba(0, 122, 255, 0.1);
-  --macos-tag-text: #007aff;
+  --macos-tag-bg: rgba(40, 85, 217, 0.08);
+  --macos-tag-text: #2855d9;
 
   padding: 0px;
   margin: 0px;
@@ -51,37 +51,37 @@
 }
 
 html.dark {
-  // macOS Sonoma dark mode — "Deep Blue" wallpaper palette
-  --bg-main: #1e1e2e;
-  --macos-bg: #1e1e2e;
-  --macos-desktop-gradient-1: #0f1628;
-  --macos-desktop-gradient-2: #1a1040;
-  --macos-desktop-gradient-3: #2d1b4e;
-  --macos-window-bg: rgba(30, 32, 46, 0.85);
-  --macos-window-border: rgba(60, 65, 90, 0.6);
-  --macos-titlebar: rgba(38, 40, 56, 0.95);
-  --macos-titlebar-hover: rgba(45, 47, 62, 0.98);
-  --macos-dock-bg: rgba(30, 32, 46, 0.6);
-  --text-primary: #f5f5f7;
-  --text-secondary: #a1a1a6;
-  --text-tertiary: #6e6e73;
-  --macos-text-primary: #f5f5f7;
-  --macos-text-secondary: #a1a1a6;
-  --macos-text-tertiary: #6e6e73;
-  --macos-accent: #0a84ff;
-  --macos-accent-hover: #0060cf;
+  // Premium dark mode — midnight navy with electric blue accents
+  --bg-main: #0b1220;
+  --macos-bg: #0b1220;
+  --macos-desktop-gradient-1: #0b1328;
+  --macos-desktop-gradient-2: #111d33;
+  --macos-desktop-gradient-3: #172c43;
+  --macos-window-bg: rgba(15, 23, 42, 0.76);
+  --macos-window-border: rgba(148, 163, 184, 0.22);
+  --macos-titlebar: rgba(15, 23, 42, 0.92);
+  --macos-titlebar-hover: rgba(17, 24, 39, 0.98);
+  --macos-dock-bg: rgba(15, 23, 42, 0.62);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --macos-text-primary: #f8fafc;
+  --macos-text-secondary: #cbd5e1;
+  --macos-text-tertiary: #94a3b8;
+  --macos-accent: #6ca8ff;
+  --macos-accent-hover: #4f8ef7;
   --macos-red: #ff453a;
   --macos-yellow: #ffd60a;
   --macos-green: #32d74b;
-  --macos-shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
-  --macos-shadow-md: 0 4px 14px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.15);
-  --macos-shadow-lg: 0 12px 40px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.2);
-  --macos-shadow-xl: 0 24px 60px rgba(0,0,0,0.4), 0 8px 20px rgba(0,0,0,0.25);
-  --macos-divider: rgba(255,255,255,0.06);
-  --macos-selection: rgba(10, 132, 255, 0.2);
-  --macos-input-bg: rgba(45, 47, 62, 0.8);
-  --macos-tag-bg: rgba(10, 132, 255, 0.15);
-  --macos-tag-text: #0a84ff;
+  --macos-shadow-sm: 0 1px 3px rgba(2,6,23,0.4);
+  --macos-shadow-md: 0 4px 14px rgba(2,6,23,0.5), 0 2px 6px rgba(2,6,23,0.25);
+  --macos-shadow-lg: 0 12px 40px rgba(2,6,23,0.55), 0 4px 12px rgba(2,6,23,0.3);
+  --macos-shadow-xl: 0 24px 60px rgba(2,6,23,0.65), 0 8px 20px rgba(2,6,23,0.35);
+  --macos-divider: rgba(148,163,184,0.12);
+  --macos-selection: rgba(108, 168, 255, 0.2);
+  --macos-input-bg: rgba(15, 23, 42, 0.85);
+  --macos-tag-bg: rgba(108, 168, 255, 0.12);
+  --macos-tag-text: #6ca8ff;
 
   padding: 0px;
   margin: 0px;
@@ -96,8 +96,8 @@ html.dark {
   --text-primary: var(--macos-text-primary);
   --text-secondary: var(--macos-text-secondary);
   --brand-primary: var(--macos-accent);
-  --brand-secondary: #5856d6;
-  --brand-accent: #007193;
+  --brand-secondary: #0ea5a4;
+  --brand-accent: #4f6df5;
   --grid-color: transparent;
 }
 
@@ -108,19 +108,30 @@ html.dark {
   --text-primary: var(--macos-text-primary);
   --text-secondary: var(--macos-text-secondary);
   --brand-primary: var(--macos-accent);
-  --brand-secondary: #5856d6;
-  --brand-accent: #007193;
+  --brand-secondary: #34d399;
+  --brand-accent: #7c8cff;
   --grid-color: transparent;
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
   color: var(--macos-text-primary);
-  background-color: var(--macos-bg);
+  background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(15,23,42,0.02) 100%), var(--macos-bg);
   transition: background-color 0.3s ease, color 0.3s ease;
+  letter-spacing: -0.01em;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.22);
+  color: var(--macos-text-primary);
 }
 
 // macOS desktop wallpaper background
